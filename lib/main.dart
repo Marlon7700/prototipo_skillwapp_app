@@ -4,7 +4,10 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+<<<<<<< HEAD
 import 'dart:convert';
+=======
+>>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
 import 'login.dart';
 import 'Interfaz_IA.dart';
 import 'ventana_perfil.dart';
@@ -12,8 +15,11 @@ import 'bienvenida_perfil.dart';
 import 'mis_archivos.dart';
 import 'chat_screen.dart';
 import 'terminos_condiciones.dart';
+<<<<<<< HEAD
 import 'calificaciones.dart';
 import 'tutores_favoritos.dart';
+=======
+>>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -55,8 +61,13 @@ class SkillSwapApp extends StatelessWidget {
           secondary: const Color(0xFF00A99D),
         ),
         primaryColor: const Color(0xFF6BCE7A),
+<<<<<<< HEAD
         scaffoldBackgroundColor: const Color(0xFFFAFDFB),
         fontFamily: 'Roboto',
+=======
+        scaffoldBackgroundColor: Colors.transparent,
+        fontFamily: 'Arial',
+>>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
       ),
       initialRoute: '/login',
       routes: {
@@ -67,13 +78,17 @@ class SkillSwapApp extends StatelessWidget {
         '/archivos': (context) => const MisArchivosScreen(),
         '/bienvenida': (context) => const BienvenidaPerfil(),
         '/terminos': (context) => const TermsAndConditionsScreen(),
+<<<<<<< HEAD
         '/calificaciones': (context) => const CalificacionesScreen(),
         '/favoritos': (context) => const TutoresFavoritosScreen(),
+=======
+>>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
       },
     );
   }
 }
 
+<<<<<<< HEAD
 // ✅ Widget optimizado para mostrar imágenes Base64 sin recalcular cada vez
 class Base64Image extends StatefulWidget {
   final String base64Data;
@@ -145,6 +160,8 @@ class _Base64ImageState extends State<Base64Image> {
   }
 }
 
+=======
+>>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
@@ -153,6 +170,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
+<<<<<<< HEAD
   // Paleta visual SkillSwap (solo UI)
   static const Color _primaryGreen = Color(0xFF6BCE7A);
   static const Color _teal = Color(0xFF00A99D);
@@ -162,6 +180,8 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   static const double _radiusLg = 24.0;
   static const double _radiusPill = 30.0;
 
+=======
+>>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
   // Controlador de búsqueda
   final TextEditingController _searchController = TextEditingController();
   String _searchQuery = "";
@@ -261,6 +281,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
     super.dispose();
   }
 
+<<<<<<< HEAD
   String _userInitials(String name) {
     final parts = name.trim().split(RegExp(r'\s+'));
     if (parts.isEmpty || parts.first.isEmpty) return 'U';
@@ -297,6 +318,12 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
     showDialog(
       context: context,
       barrierColor: Colors.black26,
+=======
+  void _showProfileMenu(BuildContext context) {
+    showDialog(
+      context: context,
+      barrierColor: Colors.transparent,
+>>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
       builder: (BuildContext context) {
         return Stack(
           children: [
@@ -304,7 +331,11 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
               top: 80,
               right: 24,
               child: Material(
+<<<<<<< HEAD
                 color: const Color.fromARGB(255, 255, 242, 242),
+=======
+                color: Colors.transparent,
+>>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
                 child: Container(
                   width: 220,
                   decoration: BoxDecoration(
@@ -328,10 +359,14 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                           Navigator.pop(context);
                           Navigator.pushNamed(context, '/perfil');
                         }),
+<<<<<<< HEAD
                         _buildMenuItem(Icons.check_box_outlined, "Calificaciones", () {
                           Navigator.pop(context);
                           Navigator.pushNamed(context, '/calificaciones');
                         }),
+=======
+                        _buildMenuItem(Icons.check_box_outlined, "Calificaciones", () {}),
+>>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
                         _buildMenuItem(Icons.calendar_today_outlined, "Calendario", () {}),
                         _buildMenuItem(Icons.folder_open_outlined, "Archivos personales", () {
                           Navigator.pop(context);
@@ -354,9 +389,15 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   }
 
   void _mostrarDetallesUsuario(BuildContext context, Map<String, dynamic> data, String uid) {
+<<<<<<< HEAD
     const Color primaryGreen = Color(0xFF6BCE7A);
     final String name = data['nombre'] ?? data['email']?.split('@')[0] ?? "Usuario";
     final String photo = data['photoUrl'] ?? data['fotoUrl'] ?? "";
+=======
+    final Color primaryGreen = const Color(0xFF6BCE7A);
+    final String name = data['nombre'] ?? data['email']?.split('@')[0] ?? "Usuario";
+    final String photo = data['fotoUrl'] ?? 'https://ui-avatars.com/api/?name=$name&background=random';
+>>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
 
     showModalBottomSheet(
       context: context,
@@ -380,6 +421,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                     Stack(
                       alignment: Alignment.bottomRight,
                       children: [
+<<<<<<< HEAD
                         CircleAvatar(
                           radius: 65,
                           backgroundColor: Colors.grey.shade200,
@@ -391,6 +433,9 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                 : Image.network('https://ui-avatars.com/api/?name=$name&background=random', width: 130, height: 130, fit: BoxFit.cover),
                           ),
                         ),
+=======
+                        CircleAvatar(radius: 65, backgroundImage: NetworkImage(photo)),
+>>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
                         StreamBuilder(
                           stream: FirebaseDatabase.instance.ref("status/$uid").onValue,
                           builder: (context, snapshot) {
@@ -447,6 +492,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                     ),
                     const SizedBox(height: 20),
                     Text(name, style: const TextStyle(fontSize: 26, fontWeight: FontWeight.bold, color: Color(0xFF334A5F))),
+<<<<<<< HEAD
                     
                     // Mostrar Promedio de Estrellas
                     StreamBuilder<QuerySnapshot>(
@@ -476,6 +522,8 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                       },
                     ),
 
+=======
+>>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
                     Text(data['email'] ?? "", style: const TextStyle(color: Colors.grey)),
                     const SizedBox(height: 30),
                     
@@ -520,6 +568,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
                       ),
                     ),
+<<<<<<< HEAD
                     const SizedBox(height: 12),
                     StatefulBuilder(
                       builder: (context, setState) {
@@ -539,6 +588,8 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                         );
                       }
                     ),
+=======
+>>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
                   ],
                 ),
               ),
@@ -565,7 +616,11 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
               Expanded(child: Text(item['value'] as String, style: const TextStyle(color: Colors.black87), overflow: TextOverflow.ellipsis)),
             ],
           ),
+<<<<<<< HEAD
         )),
+=======
+        )).toList(),
+>>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
       ],
     );
   }
@@ -675,16 +730,26 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
+<<<<<<< HEAD
     const Color primaryGreen = _primaryGreen;
+=======
+    const Color primaryGreen = Color(0xFF6BCE7A);
+    const Color darkText = Color(0xFF334A5F);
+>>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
 
     // Obtener el usuario actual
     final user = FirebaseAuth.instance.currentUser;
     String userName = "Guest";
     if (user != null && user.email != null) {
+<<<<<<< HEAD
+=======
+      // Extrae la parte antes del @ del correo
+>>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
       userName = user.email!.split('@')[0];
     }
 
     return Scaffold(
+<<<<<<< HEAD
       body: user == null 
         ? const Center(child: CircularProgressIndicator())
         : StreamBuilder<DocumentSnapshot>(
@@ -863,14 +928,120 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                               BoxShadow(
                                 color: Colors.black.withValues(alpha: 0.06),
                                 blurRadius: 14,
+=======
+      body: Stack(
+        children: [
+          // 1. FONDO
+          Positioned.fill(
+            child: Image.asset('assets/Fondo_SkillSwap.png', fit: BoxFit.cover),
+          ),
+
+          // 2. CONTENIDO
+          SafeArea(
+            child: Column(
+              children: [
+                Expanded(
+                  child: SingleChildScrollView(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 24.0, vertical: 20.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        // --- Header con Logo y Perfil clickable ---
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Container(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 15, vertical: 8),
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                              child: Row(
+                                children: [
+                                  Image.asset(
+                                    'assets/imagen_skillwasp.jpeg',
+                                    height: 30,
+                                    errorBuilder: (context, error, stackTrace) =>
+                                        const Icon(Icons.swap_calls,
+                                            color: Color(0xFF00A99D), size: 30),
+                                  ),
+                                  const SizedBox(width: 8),
+                                  const Text(
+                                    "SkillSwap",
+                                    style: TextStyle(
+                                      fontSize: 22,
+                                      fontWeight: FontWeight.bold,
+                                      color: Color(0xFF6BCE7A),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            // Avatar interactivo (Imagen 2)
+                            GestureDetector(
+                              onTap: () {
+                                _showProfileMenu(context);
+                              },
+                              child: Container(
+                                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(25),
+                                  boxShadow: [
+                                    // ignore: deprecated_member_use
+                                    BoxShadow(color: Colors.black.withOpacity(0.05), blurRadius: 5)
+                                  ],
+                                ),
+                                child: Row(
+                                  children: [
+                                    CircleAvatar(
+                                      radius: 15,
+                                      backgroundImage: NetworkImage(
+                                          'https://ui-avatars.com/api/?name=$userName&background=6BCE7A&color=fff'),
+                                    ),
+                                    const SizedBox(width: 8),
+                                    Text(
+                                      userName,
+                                      style: const TextStyle(
+                                          color: Color(0xFF334A5F),
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                    const Icon(Icons.keyboard_arrow_down, color: Colors.grey),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(height: 25),
+
+                        // --- BUSCADOR Y FILTROS TIPO IMAGEN ---
+                        Container(
+                          padding: const EdgeInsets.symmetric(horizontal: 16),
+                          height: 55,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(30),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black.withOpacity(0.05),
+                                blurRadius: 10,
+>>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
                                 offset: const Offset(0, 4),
                               ),
                             ],
                           ),
                           child: Row(
                             children: [
+<<<<<<< HEAD
                               Icon(Icons.search_rounded, color: _primaryGreen.withValues(alpha: 0.85), size: 22),
                               const SizedBox(width: 10),
+=======
+                              const Icon(Icons.search, color: Color(0xFF6BCE7A)),
+                              const SizedBox(width: 12),
+>>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
                               Expanded(
                                 child: TextField(
                                   controller: _searchController,
@@ -879,6 +1050,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                       _searchQuery = value.toLowerCase();
                                     });
                                   },
+<<<<<<< HEAD
                                   style: const TextStyle(color: _darkText, fontSize: 15),
                                   decoration: const InputDecoration(
                                     hintText: "Buscar personas o habilidades",
@@ -886,10 +1058,17 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                     border: InputBorder.none,
                                     isDense: true,
                                     contentPadding: EdgeInsets.zero,
+=======
+                                  decoration: const InputDecoration(
+                                    hintText: "Buscar personas o habilidades",
+                                    hintStyle: TextStyle(color: Colors.grey, fontSize: 15),
+                                    border: InputBorder.none,
+>>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
                                   ),
                                 ),
                               ),
                               Container(
+<<<<<<< HEAD
                                 height: 28,
                                 width: 1,
                                 color: Colors.grey.withValues(alpha: 0.25),
@@ -903,16 +1082,38 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                   color: _primaryGreen,
                                   fontWeight: FontWeight.w600,
                                   fontSize: 14,
+=======
+                                height: 25,
+                                width: 1,
+                                color: Colors.grey.withOpacity(0.3),
+                                margin: const EdgeInsets.symmetric(horizontal: 10),
+                              ),
+                              const Icon(Icons.tune, color: Color(0xFF6BCE7A)),
+                              const SizedBox(width: 4),
+                              const Text(
+                                "Filtros",
+                                style: TextStyle(
+                                  color: Color(0xFF6BCE7A),
+                                  fontWeight: FontWeight.w600,
+>>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
                                 ),
                               ),
                             ],
                           ),
                         ),
                         const SizedBox(height: 15),
+<<<<<<< HEAD
                         Row(
                           children: [
                             Expanded(
                               child: GestureDetector(
+=======
+                        SingleChildScrollView(
+                          scrollDirection: Axis.horizontal,
+                          child: Row(
+                            children: [
+                              GestureDetector(
+>>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
                                 onTap: () {
                                   setState(() {
                                     _filterByPeople = !_filterByPeople;
@@ -923,10 +1124,15 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                 },
                                 child: _buildFilterChip(Icons.person, "Personas", _filterByPeople),
                               ),
+<<<<<<< HEAD
                             ),
                             const SizedBox(width: 15),
                             Expanded(
                               child: GestureDetector(
+=======
+                              const SizedBox(width: 10),
+                              GestureDetector(
+>>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
                                 onTap: () {
                                   setState(() {
                                     _filterBySkills = !_filterBySkills;
@@ -937,10 +1143,45 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                 },
                                 child: _buildFilterChip(Icons.lightbulb_outline, "Habilidades", _filterBySkills),
                               ),
+<<<<<<< HEAD
                             ),
                           ],
                         ),
                         const SizedBox(height: 30),
+=======
+                            ],
+                          ),
+                        ),
+                        const SizedBox(height: 30),
+
+                        // --- Saludo ---
+                        Wrap(
+                          crossAxisAlignment: WrapCrossAlignment.center,
+                          children: [
+                            Text(
+                              "Bienvenido, $userName!",
+                              style: const TextStyle(
+                                  fontSize: 32,
+                                  fontWeight: FontWeight.bold,
+                                  color: darkText),
+                            ),
+                            const SizedBox(width: 10),
+                            AnimatedBuilder(
+                              animation: _waveAnimation,
+                              builder: (context, child) {
+                                return Transform.rotate(
+                                  angle: _waveAnimation.value,
+                                  child: const Text("👋",
+                                      style: TextStyle(fontSize: 32)),
+                                );
+                              },
+                            ),
+                          ],
+                        ),
+                        const Text("What skills do you want to swap?",
+                            style: TextStyle(fontSize: 16, color: darkText)),
+                        const SizedBox(height: 15),
+>>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
 
                         // --- Menú de Ordenar ---
                         Row(
@@ -948,6 +1189,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                             const Text(
                               "Ordenar por: ",
                               style: TextStyle(
+<<<<<<< HEAD
                                 fontWeight: FontWeight.w600,
                                 color: _darkText,
                                 fontSize: 15,
@@ -967,16 +1209,35 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                     offset: const Offset(0, 2),
                                   ),
                                 ],
+=======
+                                  fontWeight: FontWeight.bold, color: darkText),
+                            ),
+                            const SizedBox(width: 8),
+                            Container(
+                              padding: const EdgeInsets.symmetric(horizontal: 12),
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(15),
+                                border: Border.all(color: Colors.grey.withOpacity(0.3)),
+>>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
                               ),
                               child: DropdownButtonHideUnderline(
                                 child: DropdownButton<String>(
                                   value: _currentSort,
+<<<<<<< HEAD
                                   icon: const Icon(Icons.keyboard_arrow_down_rounded, color: _primaryGreen, size: 22),
                                   style: const TextStyle(
                                     color: _darkText,
                                     fontWeight: FontWeight.w600,
                                     fontSize: 14,
                                   ),
+=======
+                                  icon: const Icon(Icons.arrow_drop_down, color: primaryGreen),
+                                  style: const TextStyle(
+                                      color: Color(0xFF334A5F),
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: 14),
+>>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
                                   onChanged: (String? newValue) {
                                     if (newValue != null) {
                                       setState(() {
@@ -999,12 +1260,17 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                             ),
                           ],
                         ),
+<<<<<<< HEAD
                         const SizedBox(height: 24),
+=======
+                        const SizedBox(height: 30),
+>>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
 
                         // --- Offer / Need ---
                         Row(
                           children: [
                             Expanded(child: _buildOfferCard(primaryGreen)),
+<<<<<<< HEAD
                             Padding(
                               padding: const EdgeInsets.symmetric(horizontal: 8),
                               child: Icon(
@@ -1012,6 +1278,12 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                 color: primaryGreen.withValues(alpha: 0.9),
                                 size: 32,
                               ),
+=======
+                            const Padding(
+                              padding: EdgeInsets.symmetric(horizontal: 10),
+                              child: Icon(Icons.swap_horiz_rounded,
+                                  color: primaryGreen, size: 35),
+>>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
                             ),
                             Expanded(child: _buildNeedCard()),
                           ],
@@ -1022,6 +1294,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                         const SizedBox(height: 40),
 
                         // --- Matches ---
+<<<<<<< HEAD
                         const Text(
                           "Suggested Matches",
                           style: TextStyle(
@@ -1036,6 +1309,14 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                           style: TextStyle(fontSize: 13, color: Colors.grey.shade600),
                         ),
                         const SizedBox(height: 12),
+=======
+                        const Text("Suggested Matches",
+                            style: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                                color: darkText)),
+                        const SizedBox(height: 15),
+>>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
 
                         // StreamBuilder para mostrar usuarios desde Firestore (Lista oficial)
                         StreamBuilder<QuerySnapshot>(
@@ -1161,8 +1442,12 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                     var userData = docs[index].data() as Map<String, dynamic>;
                                     String uid = docs[index].id;
                                     String name = userData['nombre'] ?? userData['email']?.split('@')[0] ?? "Usuario";
+<<<<<<< HEAD
                                     // Corregido: Buscar en photoUrl (inglés) o fotoUrl (español) para que se vea siempre
                                     String photo = userData['photoUrl'] ?? userData['fotoUrl'] ?? "";
+=======
+                                    String photo = userData['fotoUrl'] ?? 'https://ui-avatars.com/api/?name=$name&background=random';
+>>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
                                     
                                     return GestureDetector(
                                       onTap: () => _mostrarDetallesUsuario(context, userData, uid),
@@ -1173,8 +1458,11 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                         needs: userData['necesita'] ?? "Por definir",
                                         offers: userData['ofrece'] ?? "Por definir",
                                         imageUrl: photo,
+<<<<<<< HEAD
                                         isFavorite: favoritosIds.contains(uid),
                                         onToggleFavorite: () => _toggleFavorito(uid),
+=======
+>>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
                                       ),
                                     );
                                   },
@@ -1183,9 +1471,14 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                             );
                           },
                         ),
+<<<<<<< HEAD
                         const SizedBox(height: 28),
                         _buildSeccionFavoritos(favoritosIds),
                         const SizedBox(height: 20),
+=======
+                        const SizedBox(height: 30),
+                        const SizedBox(height: 10),
+>>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
                       ],
                     ),
                   ),
@@ -1194,6 +1487,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                 // --- Copyright ---
                 const Padding(
                   padding: EdgeInsets.only(bottom: 20),
+<<<<<<< HEAD
                   child: Center(
                     child: Text(
                       '© 2026 SkillSwap. Todos los derechos reservados.',
@@ -1204,19 +1498,35 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                         fontWeight: FontWeight.w400,
                       ),
                     ),
+=======
+                  child: Text(
+                    '© 2026 SkillSwap. Todos los derechos reservados.',
+                    style: TextStyle(
+                        color: darkText,
+                        fontSize: 12,
+                        fontWeight: FontWeight.w500),
+>>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
                   ),
                 ),
               ],
             ),
           ),
 
+<<<<<<< HEAD
           // --- Bot IA abajo a la derecha (grande) ---
+=======
+          // --- Chat AI Bot con Saludo Animado ---
+>>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
           Positioned(
             bottom: 60,
             right: 25,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
+<<<<<<< HEAD
+=======
+                // Globo de saludo animado
+>>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
                 if (_showGreeting)
                   FadeTransition(
                     opacity: _bubbleOpacityAnimation,
@@ -1226,12 +1536,19 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                       child: Container(
                         margin: const EdgeInsets.only(bottom: 10, right: 10),
                         padding: const EdgeInsets.symmetric(
+<<<<<<< HEAD
                           horizontal: 16,
                           vertical: 10,
                         ),
                         decoration: BoxDecoration(
                           color: _teal,
                           borderRadius: const BorderRadius.only(
+=======
+                            horizontal: 16, vertical: 10),
+                        decoration: const BoxDecoration(
+                          color: Color(0xFF00A99D), // Color secundario para el chat
+                          borderRadius: BorderRadius.only(
+>>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
                             topLeft: Radius.circular(15),
                             topRight: Radius.circular(15),
                             bottomLeft: Radius.circular(15),
@@ -1239,28 +1556,45 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                           ),
                           boxShadow: [
                             BoxShadow(
+<<<<<<< HEAD
                               color: Colors.black.withValues(alpha: 0.12),
                               blurRadius: 5,
                               offset: const Offset(0, 2),
                             ),
+=======
+                                color: Colors.black12,
+                                blurRadius: 5,
+                                offset: Offset(0, 2))
+>>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
                           ],
                         ),
                         child: const Text(
                           "Hola, bienvenido a SkillSwap",
                           style: TextStyle(
+<<<<<<< HEAD
                             color: Colors.white,
                             fontWeight: FontWeight.w600,
                             fontSize: 14,
                           ),
+=======
+                              color: Colors.white,
+                              fontWeight: FontWeight.w600,
+                              fontSize: 14),
+>>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
                         ),
                       ),
                     ),
                   ),
+<<<<<<< HEAD
+=======
+                // Botón del Bot IA animado
+>>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
                 _buildAIBotButton(primaryGreen),
               ],
             ),
           ),
         ],
+<<<<<<< HEAD
       );
     },
   ),
@@ -1279,12 +1613,28 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
             blurRadius: 16,
             offset: const Offset(0, 6),
           ),
+=======
+      ),
+    );
+  }
+
+  Widget _buildOfferCard(Color green) {
+    return Container(
+      height: 200,
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(20),
+        boxShadow: [
+          // ignore: deprecated_member_use
+          BoxShadow(color: Colors.black.withOpacity(0.05), blurRadius: 10)
+>>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
         ],
       ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Container(
+<<<<<<< HEAD
             padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 5),
             decoration: BoxDecoration(
               color: green,
@@ -1312,11 +1662,30 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
               color: _darkText,
             ),
           ),
+=======
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+            decoration: BoxDecoration(
+                color: green, borderRadius: BorderRadius.circular(20)),
+            child: const Text("I OFFER",
+                style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 12)),
+          ),
+          const SizedBox(height: 20),
+          const Icon(Icons.laptop_chromebook_rounded,
+              size: 60, color: Color(0xFF00A99D)),
+          const SizedBox(height: 10),
+          const Text("Graphic Design",
+              style: TextStyle(
+                  fontWeight: FontWeight.w600, color: Color(0xFF334A5F))),
+>>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
         ],
       ),
     );
   }
 
+<<<<<<< HEAD
   Future<void> _toggleFavorito(String uid) async {
     final user = FirebaseAuth.instance.currentUser;
     if (user == null) return;
@@ -1365,12 +1734,24 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
             blurRadius: 16,
             offset: const Offset(0, 6),
           ),
+=======
+  Widget _buildNeedCard() {
+    return Container(
+      height: 200,
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(20),
+        boxShadow: [
+          // ignore: deprecated_member_use
+          BoxShadow(color: Colors.black.withOpacity(0.05), blurRadius: 10)
+>>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
         ],
       ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Container(
+<<<<<<< HEAD
             padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 5),
             decoration: BoxDecoration(
               color: _teal,
@@ -1494,11 +1875,30 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
             },
           ),
         ),
+=======
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+            decoration: BoxDecoration(
+                color: const Color(0xFF00A99D),
+                borderRadius: BorderRadius.circular(20)),
+            child: const Text("I NEED",
+                style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 12)),
+          ),
+          const SizedBox(height: 20),
+          const Icon(Icons.forum_rounded, size: 60, color: Color(0xFF8CC63F)),
+          const SizedBox(height: 10),
+          const Text("English Practice",
+              style: TextStyle(
+                  fontWeight: FontWeight.w600, color: Color(0xFF334A5F))),
+>>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
         ],
       ),
     );
   }
 
+<<<<<<< HEAD
   Widget _buildFavoritoAvatarItem({
     required String uid,
     required String name,
@@ -1594,12 +1994,15 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
     );
   }
 
+=======
+>>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
   Widget _buildFindMatchButton(Color green) {
     return Container(
       width: double.infinity,
       height: 55,
       decoration: BoxDecoration(
         color: green,
+<<<<<<< HEAD
         borderRadius: BorderRadius.circular(_radiusPill),
         boxShadow: [
           BoxShadow(
@@ -1619,6 +2022,21 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
             letterSpacing: 0.2,
           ),
         ),
+=======
+        borderRadius: BorderRadius.circular(30),
+        boxShadow: [
+          BoxShadow(
+              // ignore: deprecated_member_use
+              color: green.withOpacity(0.3),
+              blurRadius: 10,
+              offset: const Offset(0, 5))
+        ],
+      ),
+      child: const Center(
+        child: Text("Find a Match",
+            style: TextStyle(
+                color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold)),
+>>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
       ),
     );
   }
@@ -1630,8 +2048,11 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
     required String offers,
     required String imageUrl,
     required String userId,
+<<<<<<< HEAD
     bool isFavorite = false,
     VoidCallback? onToggleFavorite,
+=======
+>>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
   }) {
     return Container(
       padding: const EdgeInsets.all(12),
@@ -1664,6 +2085,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                   CircleAvatar(
                     radius: 35,
                     backgroundColor: Colors.grey.shade200,
+<<<<<<< HEAD
                     child: ClipOval(
                       child: imageUrl.isNotEmpty
                           ? (imageUrl.startsWith('http')
@@ -1671,6 +2093,14 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                               : Image.memory(base64Decode(imageUrl), width: 70, height: 70, fit: BoxFit.cover))
                           : const Icon(Icons.person, size: 40, color: Colors.grey),
                     ),
+=======
+                    backgroundImage: (imageUrl.isNotEmpty && imageUrl.startsWith('http'))
+                        ? NetworkImage(imageUrl)
+                        : null,
+                    child: (imageUrl.isEmpty || !imageUrl.startsWith('http'))
+                        ? const Icon(Icons.person, size: 40, color: Colors.grey)
+                        : null,
+>>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
                   ),
                   Positioned(
                     right: 2,
@@ -1802,6 +2232,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
               ],
             ),
           ),
+<<<<<<< HEAD
           if (onToggleFavorite != null)
             Column(
               mainAxisSize: MainAxisSize.min,
@@ -1825,6 +2256,8 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                 ),
               ],
             ),
+=======
+>>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
         ],
       ),
     );
@@ -1840,6 +2273,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
           return ScaleTransition(
             scale: _scaleAnimation,
             child: Container(
+<<<<<<< HEAD
               height: 70,
               width: 70,
               decoration: BoxDecoration(
@@ -1853,11 +2287,31 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                   ),
                   BoxShadow(
                     color: Colors.black.withValues(alpha: 0.1),
+=======
+              height: 70, // Un poco más grande para que resalte la imagen
+              width: 70,
+              decoration: BoxDecoration(
+                color: Colors.white, // Fondo blanco para que resalte el robot verde
+                shape: BoxShape.circle,
+                boxShadow: [
+                  // Brillo parpadeante animado
+                  BoxShadow(
+                    // ignore: deprecated_member_use
+                    color: green.withOpacity(_glowAnimation.value),
+                    blurRadius: 20 * _scaleAnimation.value,
+                    spreadRadius: 5 * _scaleAnimation.value,
+                  ),
+                  // Sombra base
+                  BoxShadow(
+                    // ignore: deprecated_member_use
+                    color: Colors.black.withOpacity(0.1),
+>>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
                     blurRadius: 10,
                     offset: const Offset(0, 4),
                   ),
                 ],
               ),
+<<<<<<< HEAD
               padding: const EdgeInsets.all(5),
               child: ClipOval(
                 child: Image.asset(
@@ -1868,6 +2322,13 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                     color: green,
                     size: 38,
                   ),
+=======
+              padding: const EdgeInsets.all(5), // Espacio para el borde blanco
+              child: ClipOval(
+                child: Image.asset(
+                  'assets/Chatbot_SkillSwap.png', // Tu imagen proporcionada
+                  fit: BoxFit.contain,
+>>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
                 ),
               ),
             ),
@@ -1878,6 +2339,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   }
 
   Widget _buildFilterChip(IconData icon, String label, bool isSelected) {
+<<<<<<< HEAD
     final bool isPersonas = label == "Personas";
     final Color inactiveIcon = isPersonas ? _mutedText : const Color(0xFFE6B422);
 
@@ -1908,11 +2370,37 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
             size: 20,
             color: isSelected ? _primaryGreen : inactiveIcon,
           ),
+=======
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(20),
+        border: Border.all(
+          color: isSelected ? const Color(0xFF6BCE7A).withOpacity(0.3) : Colors.transparent,
+        ),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.04),
+            blurRadius: 8,
+            offset: const Offset(0, 2),
+          ),
+        ],
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(icon, size: 18, color: isSelected ? const Color(0xFF6BCE7A) : Colors.amber),
+>>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
           const SizedBox(width: 8),
           Text(
             label,
             style: TextStyle(
+<<<<<<< HEAD
               color: isSelected ? _primaryGreen : _darkText,
+=======
+              color: isSelected ? const Color(0xFF6BCE7A) : const Color(0xFF334A5F),
+>>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
               fontWeight: FontWeight.w600,
               fontSize: 14,
             ),

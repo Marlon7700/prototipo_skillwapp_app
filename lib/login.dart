@@ -1,6 +1,9 @@
 import 'package:flutter/foundation.dart'; // Importar kIsWeb
 import 'package:flutter/material.dart';
+<<<<<<< HEAD
 import 'package:flutter/services.dart'; // Añadido para TextInput
+=======
+>>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
 import 'dart:async';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -31,7 +34,10 @@ class _LoginScreenState extends State<LoginScreen>
   bool _obscureText = true;
   bool _isSubmitting = false;
   List<String> _suggestedEmails = [];
+<<<<<<< HEAD
   bool _showSuggestions = false;
+=======
+>>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
 
   // ─── Typewriter ────────────────────────────────────────────────────────────
   final String _fullText = "SkillSwap";
@@ -114,22 +120,33 @@ class _LoginScreenState extends State<LoginScreen>
   void _onEmailChanged() async {
     final text = _emailController.text.trim();
     if (text.length < 2) {
+<<<<<<< HEAD
       if (mounted) {
         setState(() {
         _suggestedEmails = [];
         _showSuggestions = false;
       });
       }
+=======
+      if (mounted) setState(() => _suggestedEmails = []);
+>>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
       return;
     }
 
     try {
+<<<<<<< HEAD
       // Optimizamos la consulta para que sea más rápida
+=======
+>>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
       final snapshot = await FirebaseFirestore.instance
           .collection('usuarios')
           .where('email', isGreaterThanOrEqualTo: text)
           .where('email', isLessThanOrEqualTo: '$text\uf8ff')
+<<<<<<< HEAD
           .limit(3) // Solo 3 para rapidez
+=======
+          .limit(5)
+>>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
           .get();
 
       if (mounted) {
@@ -138,7 +155,10 @@ class _LoginScreenState extends State<LoginScreen>
               .map((doc) => doc['email'] as String)
               .where((e) => e != text)
               .toList();
+<<<<<<< HEAD
           _showSuggestions = _suggestedEmails.isNotEmpty;
+=======
+>>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
         });
       }
     } catch (e) {
@@ -146,6 +166,7 @@ class _LoginScreenState extends State<LoginScreen>
     }
   }
 
+<<<<<<< HEAD
   void _recomendarContrasena() {
     // Generar una contraseña segura y sugerirla
     const chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#\$%';
@@ -165,6 +186,8 @@ class _LoginScreenState extends State<LoginScreen>
     );
   }
 
+=======
+>>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
   void _startTypewriter() {
     Timer.periodic(const Duration(milliseconds: 90), (timer) {
       if (_charIndex < _fullText.length) {
@@ -240,10 +263,15 @@ class _LoginScreenState extends State<LoginScreen>
         'uid': user.uid,
         'email': email,
         'nombre': nombreInicial,
+<<<<<<< HEAD
+=======
+        'fotoUrl': user.photoURL ?? '',
+>>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
         'actualizadoEn': FieldValue.serverTimestamp(),
         'estado': 'online', 
       };
 
+<<<<<<< HEAD
       // SOLO guardamos la foto si el usuario de Auth trae una (ej. Google)
       // Esto evita borrar la foto Base64 guardada manualmente si entramos por email
       if (user.photoURL != null && user.photoURL!.isNotEmpty) {
@@ -251,6 +279,8 @@ class _LoginScreenState extends State<LoginScreen>
         datos['fotoUrl'] = user.photoURL;
       }
 
+=======
+>>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
       if (esNuevo) {
         datos['bio'] = '';
         datos['ofrece'] = '';
@@ -297,10 +327,13 @@ class _LoginScreenState extends State<LoginScreen>
       if (cred.user != null) {
         await _guardarUsuarioEnFirestore(cred.user!);
       }
+<<<<<<< HEAD
       
       // Activar el guardado de contraseña en el gestor del SO
       TextInput.finishAutofillContext();
 
+=======
+>>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
       if (!mounted) return;
       _mostrarMensajeConsentimiento(context, '/bienvenida');
     } on FirebaseAuthException catch (e) {
@@ -329,9 +362,12 @@ class _LoginScreenState extends State<LoginScreen>
           if (cred.user != null) {
             await _guardarUsuarioEnFirestore(cred.user!, esNuevo: true);
           }
+<<<<<<< HEAD
           
           TextInput.finishAutofillContext();
 
+=======
+>>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
           if (!mounted) return;
           
           ScaffoldMessenger.of(context).showSnackBar(
@@ -497,6 +533,7 @@ class _LoginScreenState extends State<LoginScreen>
 
   // ─── Diálogo de Consentimiento de Datos ──────────────────────────────────
   Future<void> _mostrarMensajeConsentimiento(BuildContext context, String navigateTo) async {
+<<<<<<< HEAD
     final user = FirebaseAuth.instance.currentUser;
     if (user != null) {
       try {
@@ -514,6 +551,8 @@ class _LoginScreenState extends State<LoginScreen>
 
     if (!context.mounted) return;
 
+=======
+>>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
     return showDialog<void>(
       context: context,
       barrierDismissible: false,
@@ -531,12 +570,20 @@ class _LoginScreenState extends State<LoginScreen>
             child: ListBody(
               children: <Widget>[
                 Text(
+<<<<<<< HEAD
                   'Para continuar, debes leer y aceptar nuestros términos de servicio y políticas de privacidad para garantizar una experiencia segura.',
+=======
+                  'Esta aplicación utilizará datos condicionales del usuario para poder iniciar y ofrecer una mejor experiencia personalizada.',
+>>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
                   style: TextStyle(fontSize: 16),
                 ),
                 SizedBox(height: 10),
                 Text(
+<<<<<<< HEAD
                   'Al aceptar, confirmas que estás de acuerdo con el manejo de tus datos para las funciones principales de SkillSwap.',
+=======
+                  'Al continuar, aceptas el uso de tus datos para las funciones principales de SkillSwap.',
+>>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
                   style: TextStyle(fontSize: 14, color: Colors.grey),
                 ),
               ],
@@ -545,6 +592,7 @@ class _LoginScreenState extends State<LoginScreen>
           actions: <Widget>[
             TextButton(
               child: const Text('Ver Términos y Condiciones', style: TextStyle(color: Colors.grey)),
+<<<<<<< HEAD
               onPressed: () async {
                 final acepto = await Navigator.pushNamed(context, '/terminos');
                 if (acepto == true) {
@@ -552,10 +600,15 @@ class _LoginScreenState extends State<LoginScreen>
                   Navigator.of(dialogContext).pop();
                   Navigator.pushReplacementNamed(context, navigateTo);
                 }
+=======
+              onPressed: () {
+                Navigator.pushNamed(context, '/terminos');
+>>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
               },
             ),
             TextButton(
               child: Text('Aceptar', style: TextStyle(color: secondaryBlue, fontWeight: FontWeight.bold)),
+<<<<<<< HEAD
               onPressed: () async {
                 if (user != null) {
                   await FirebaseFirestore.instance.collection('usuarios').doc(user.uid).update({
@@ -564,6 +617,9 @@ class _LoginScreenState extends State<LoginScreen>
                   });
                 }
                 if (!dialogContext.mounted) return;
+=======
+              onPressed: () {
+>>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
                 Navigator.of(dialogContext).pop();
                 Navigator.pushReplacementNamed(context, navigateTo);
               },
@@ -932,6 +988,7 @@ class _LoginScreenState extends State<LoginScreen>
                         margin: const EdgeInsets.only(top: 8),
                         padding: const EdgeInsets.symmetric(horizontal: 4),
                         decoration: BoxDecoration(
+<<<<<<< HEAD
                           color: Colors.white.withOpacity(0.95),
                           borderRadius: BorderRadius.circular(12),
                           boxShadow: const [BoxShadow(color: Colors.black12, blurRadius: 10)],
@@ -947,6 +1004,18 @@ class _LoginScreenState extends State<LoginScreen>
                                 _suggestedEmails = [];
                                 _showSuggestions = false;
                               });
+=======
+                          color: Colors.white.withOpacity(0.9),
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        child: Column(
+                          children: _suggestedEmails.map((email) => ListTile(
+                            title: Text(email, style: const TextStyle(fontSize: 14)),
+                            dense: true,
+                            onTap: () {
+                              _emailController.text = email;
+                              setState(() => _suggestedEmails = []);
+>>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
                             },
                           )).toList(),
                         ),
@@ -966,6 +1035,7 @@ class _LoginScreenState extends State<LoginScreen>
                     isPassword: true,
                     textInputAction: TextInputAction.done,
                     onFieldSubmitted: (_) => _handleLogin(),
+<<<<<<< HEAD
                     suffixIcon: Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
@@ -984,6 +1054,8 @@ class _LoginScreenState extends State<LoginScreen>
                         ),
                       ],
                     ),
+=======
+>>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
                   ),
                 ),
                 const SizedBox(height: 28),
@@ -1050,7 +1122,10 @@ class _LoginScreenState extends State<LoginScreen>
     TextInputType keyboardType = TextInputType.text,
     TextInputAction textInputAction = TextInputAction.next,
     void Function(String)? onFieldSubmitted,
+<<<<<<< HEAD
     Widget? suffixIcon, // Agregado parámetro opcional
+=======
+>>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
   }) {
     return Container(
       decoration: BoxDecoration(
@@ -1074,13 +1149,22 @@ class _LoginScreenState extends State<LoginScreen>
         autovalidateMode: AutovalidateMode.onUserInteraction,
         style: const TextStyle(fontWeight: FontWeight.w500, fontSize: 15),
         autofillHints: isPassword 
+<<<<<<< HEAD
             ? [AutofillHints.newPassword, AutofillHints.password] 
             : [AutofillHints.email, AutofillHints.username],
+=======
+            ? [AutofillHints.password] 
+            : [AutofillHints.email],
+>>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
         decoration: InputDecoration(
           hintText: hintText,
           hintStyle: TextStyle(color: Colors.grey.shade400),
           prefixIcon: Icon(icon, color: primaryGreen, size: 22),
+<<<<<<< HEAD
           suffixIcon: suffixIcon ?? (isPassword
+=======
+          suffixIcon: isPassword
+>>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
               ? IconButton(
                   icon: Icon(
                     _obscureText
@@ -1092,7 +1176,11 @@ class _LoginScreenState extends State<LoginScreen>
                   onPressed: () =>
                       setState(() => _obscureText = !_obscureText),
                 )
+<<<<<<< HEAD
               : null),
+=======
+              : null,
+>>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
           border: InputBorder.none,
           errorBorder: InputBorder.none,
           focusedErrorBorder: InputBorder.none,

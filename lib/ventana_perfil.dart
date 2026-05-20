@@ -2,11 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:image_picker/image_picker.dart';
+<<<<<<< HEAD
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_image_compress/flutter_image_compress.dart';
 import 'dart:io';
 import 'dart:convert';
+=======
+import 'package:flutter_animate/flutter_animate.dart';
+import 'dart:io';
+>>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
 
 // La pantalla de perfil real del usuario con animaciones y fondo.
 // Lee y guarda los datos en la colección "usuarios" de Cloud Firestore,
@@ -45,10 +50,13 @@ class _ventana_perfilState extends State<ventana_perfil> with SingleTickerProvid
   String? _bannerUrl;
   File? _imageFile;
 
+<<<<<<< HEAD
   // Nuevas listas para experiencias y publicaciones
   List<Map<String, dynamic>> _experiencias = [];
   List<Map<String, dynamic>> _publicaciones = [];
 
+=======
+>>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
   @override
   void initState() {
     super.initState();
@@ -70,12 +78,17 @@ class _ventana_perfilState extends State<ventana_perfil> with SingleTickerProvid
     super.dispose();
   }
 
+<<<<<<< HEAD
   // Método para seleccionar y procesar la imagen (Base64 para persistencia)
+=======
+  // Corregido: Ahora guarda la referencia local o URL en Firestore
+>>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
   Future<void> _pickImage() async {
     final picker = ImagePicker();
     final pickedFile = await picker.pickImage(source: ImageSource.gallery, imageQuality: 50);
 
     if (pickedFile != null) {
+<<<<<<< HEAD
       // Compresión para que no exceda el límite de Firestore (1MB)
       final result = await FlutterImageCompress.compressWithFile(
         pickedFile.path,
@@ -112,6 +125,16 @@ class _ventana_perfilState extends State<ventana_perfil> with SingleTickerProvid
       }
     } catch (e) {
       debugPrint('Error al guardar foto: $e');
+=======
+      setState(() {
+        _imageFile = File(pickedFile.path);
+        // Para que se guarde el cambio, actualizamos la referencia que irá a Firestore
+        _photoUrl = pickedFile.path; 
+      });
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text("Foto seleccionada. Dale a 'Guardar' para confirmar.")),
+      );
+>>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
     }
   }
 
@@ -120,6 +143,7 @@ class _ventana_perfilState extends State<ventana_perfil> with SingleTickerProvid
     final picker = ImagePicker();
     final pickedFile = await picker.pickImage(source: ImageSource.gallery);
     if (pickedFile != null) {
+<<<<<<< HEAD
       final result = await FlutterImageCompress.compressWithFile(
         pickedFile.path,
         quality: 35,
@@ -131,6 +155,11 @@ class _ventana_perfilState extends State<ventana_perfil> with SingleTickerProvid
           _bannerUrl = base64Encode(result);
         });
       }
+=======
+      setState(() {
+        _bannerUrl = pickedFile.path;
+      });
+>>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
     }
   }
 
@@ -161,6 +190,7 @@ class _ventana_perfilState extends State<ventana_perfil> with SingleTickerProvid
         _ubicacionController.text = (data['ubicacion'] ?? '').toString();
         _telefonoController.text = (data['telefono'] ?? '').toString();
         _fechaNacController.text = (data['fechaNacimiento'] ?? '').toString();
+<<<<<<< HEAD
         
         // Priorizar el campo que tenga contenido real para no perder la foto
         final f1 = data['photoUrl']?.toString() ?? '';
@@ -172,6 +202,15 @@ class _ventana_perfilState extends State<ventana_perfil> with SingleTickerProvid
         // Cargar experiencias y publicaciones
         _experiencias = List<Map<String, dynamic>>.from(data['experiencias'] ?? []);
         _publicaciones = List<Map<String, dynamic>>.from(data['publicaciones'] ?? []);
+=======
+        _photoUrl = data['photoUrl'];
+        _bannerUrl = data['bannerUrl'];
+        
+        // Si la foto es una ruta local de una sesión anterior
+        if (_photoUrl != null && _photoUrl!.startsWith('/')) {
+           _imageFile = File(_photoUrl!);
+        }
+>>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
       } else {
         // Estructura inicial mejorada
         await docRef.set({
@@ -210,6 +249,7 @@ class _ventana_perfilState extends State<ventana_perfil> with SingleTickerProvid
         'ubicacion': _ubicacionController.text.trim(),
         'telefono': _telefonoController.text.trim(),
         'fechaNacimiento': _fechaNacController.text.trim(),
+<<<<<<< HEAD
         'bannerUrl': _bannerUrl ?? "",
         'experiencias': _experiencias,
         'publicaciones': _publicaciones,
@@ -222,6 +262,13 @@ class _ventana_perfilState extends State<ventana_perfil> with SingleTickerProvid
         datos['fotoUrl'] = _photoUrl;
       }
 
+=======
+        'photoUrl': _photoUrl ?? "",
+        'bannerUrl': _bannerUrl ?? "",
+        'actualizadoEn': FieldValue.serverTimestamp(),
+      };
+
+>>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
       await FirebaseFirestore.instance.collection('usuarios').doc(_uid).set(datos, SetOptions(merge: true));
       
       setState(() => _isEditing = false);
@@ -378,6 +425,7 @@ class _ventana_perfilState extends State<ventana_perfil> with SingleTickerProvid
                         child: _imageFile != null
                             ? Image.file(_imageFile!, fit: BoxFit.cover)
                             : (_photoUrl != null && _photoUrl!.isNotEmpty
+<<<<<<< HEAD
                                 ? (_photoUrl!.startsWith('http')
                                     ? Image.network(_photoUrl!, fit: BoxFit.cover)
                                     : Image.memory(
@@ -385,6 +433,9 @@ class _ventana_perfilState extends State<ventana_perfil> with SingleTickerProvid
                                         fit: BoxFit.cover,
                                         errorBuilder: (context, error, stackTrace) => Image.network('https://ui-avatars.com/api/?name=$nombre&background=6BCE7A&color=fff&size=200'),
                                       ))
+=======
+                                ? Image.network(_photoUrl!, fit: BoxFit.cover)
+>>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
                                 : Image.network('https://ui-avatars.com/api/?name=$nombre&background=6BCE7A&color=fff&size=200')),
                       ),
                     ),
@@ -474,6 +525,7 @@ class _ventana_perfilState extends State<ventana_perfil> with SingleTickerProvid
   Widget _buildTabContent() {
     return [
       _buildAcercaDeTab(),
+<<<<<<< HEAD
       _buildExperienciaTab(),
       _buildPublicacionesTab(),
     ][_tabController.index];
@@ -696,6 +748,13 @@ class _ventana_perfilState extends State<ventana_perfil> with SingleTickerProvid
     );
   }
 
+=======
+      const Center(child: Text("Próximamente: Historial laboral")),
+      const Center(child: Text("Próximamente: Tus posts")),
+    ][_tabController.index];
+  }
+
+>>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
   Widget _buildAcercaDeTab() {
     List<String> skills = _habilidadesController.text.split(',').where((s) => s.trim().isNotEmpty).toList();
     if (skills.isEmpty) skills = ["Flutter", "Dart", "Firebase"];
@@ -762,6 +821,7 @@ class _ventana_perfilState extends State<ventana_perfil> with SingleTickerProvid
 
   Widget _buildEditCard({required String title, required Widget child, IconData? icon}) {
     return Container(
+<<<<<<< HEAD
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
         boxShadow: [
@@ -796,6 +856,29 @@ class _ventana_perfilState extends State<ventana_perfil> with SingleTickerProvid
           ],
         ),
       ),
+=======
+      padding: const EdgeInsets.all(20),
+      decoration: BoxDecoration(
+        color: Colors.white.withOpacity(0.9), // Glassmorphism ligero
+        borderRadius: BorderRadius.circular(20),
+        border: Border.all(color: Colors.white.withOpacity(0.2)),
+        boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.05), blurRadius: 15, offset: const Offset(0, 8))],
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              if (icon != null) Icon(icon, size: 20, color: secondaryTeal),
+              if (icon != null) const SizedBox(width: 10),
+              Text(title, style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold, color: darkText)),
+            ],
+          ),
+          const SizedBox(height: 15),
+          child,
+        ],
+      ),
+>>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
     );
   }
 

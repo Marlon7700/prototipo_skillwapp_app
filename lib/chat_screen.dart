@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+<<<<<<< HEAD
 import 'package:flutter/services.dart';
+=======
+>>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:image_picker/image_picker.dart';
@@ -13,7 +16,10 @@ import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:open_filex/open_filex.dart';
 import 'package:flutter_image_compress/flutter_image_compress.dart';
 import 'dart:io';
+<<<<<<< HEAD
 import 'dart:async';
+=======
+>>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
 import 'dart:convert';
 import 'dart:typed_data';
 
@@ -44,6 +50,7 @@ class _ChatScreenState extends State<ChatScreen> {
   bool _showEmoji = false;
   bool _isUploading = false;
   bool _isRecording = false;
+<<<<<<< HEAD
   bool _isLocked = false;
   bool _isTextEmpty = true;
   int _recordSeconds = 0;
@@ -55,11 +62,14 @@ class _ChatScreenState extends State<ChatScreen> {
   Color _bubbleMeColor = const Color(0xFFE7FFDB); // Color defecto burbuja propia
   Color _bubbleOtherColor = Colors.white; // Color defecto burbuja ajena
   String _bubbleDesign = 'modern'; // 'modern', 'classic', 'rounded'
+=======
+>>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
 
   File? _selectedFile;
   String? _selectedFileName;
   String? _selectedFileType; // 'image', 'file', 'audio'
 
+<<<<<<< HEAD
   // Modo selección y edición de mensajes (estilo WhatsApp)
   bool _selectionMode = false;
   final Set<String> _selectedMessageIds = {};
@@ -69,12 +79,15 @@ class _ChatScreenState extends State<ChatScreen> {
   String? _editingMessageId;
   Map<String, dynamic>? _mensajeRespondiendo;
 
+=======
+>>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
   String get _chatId {
     List<String> ids = [_currentUserId, widget.receiverId];
     ids.sort();
     return ids.join("_");
   }
 
+<<<<<<< HEAD
   Map<String, dynamic> _camposBaseMensaje() {
     final campos = <String, dynamic>{
       'senderId': _currentUserId,
@@ -117,11 +130,14 @@ class _ChatScreenState extends State<ChatScreen> {
     setState(() => _mensajeRespondiendo = null);
   }
 
+=======
+>>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
   // ─── Texto ─────────────────────────────────────────────────────────────────
   Future<void> _sendMessage() async {
     final text = _messageController.text.trim();
     if (text.isEmpty) return;
 
+<<<<<<< HEAD
     if (_editingMessageId != null) {
       await _guardarEdicionMensaje(text);
       return;
@@ -140,12 +156,26 @@ class _ChatScreenState extends State<ChatScreen> {
         'mensaje': text,
         'type': 'text',
       });
+=======
+    _messageController.clear();
+    if (mounted) setState(() => _showEmoji = false);
+>>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
 
     await FirebaseFirestore.instance
         .collection('chat')
         .doc(_chatId)
         .collection('mensajes')
+<<<<<<< HEAD
         .add(data);
+=======
+        .add({
+      'senderId': _currentUserId,
+      'receiverId': widget.receiverId,
+      'mensaje': text,
+      'type': 'text',
+      'timestamp': FieldValue.serverTimestamp(),
+    });
+>>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
 
     await FirebaseFirestore.instance.collection('chat').doc(_chatId).set({
       'users': [_currentUserId, widget.receiverId],
@@ -154,6 +184,7 @@ class _ChatScreenState extends State<ChatScreen> {
     }, SetOptions(merge: true));
   }
 
+<<<<<<< HEAD
   Future<void> _guardarEdicionMensaje(String nuevoTexto) async {
     final id = _editingMessageId;
     if (id == null) return;
@@ -651,6 +682,8 @@ class _ChatScreenState extends State<ChatScreen> {
     );
   }
 
+=======
+>>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
   // ─── Selección de imagen ───────────────────────────────────────────────────
   Future<void> _pickImage(ImageSource source) async {
     try {
@@ -696,11 +729,15 @@ class _ChatScreenState extends State<ChatScreen> {
   Future<void> _startRecording() async {
     try {
       if (await _audioRecorder.hasPermission()) {
+<<<<<<< HEAD
         HapticFeedback.heavyImpact(); // Vibración al empezar
+=======
+>>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
         final directory = await getApplicationDocumentsDirectory();
         final path =
             '${directory.path}/audio_${DateTime.now().millisecondsSinceEpoch}.m4a';
         await _audioRecorder.start(const RecordConfig(), path: path);
+<<<<<<< HEAD
         if (mounted) {
           setState(() {
             _isRecording = true;
@@ -715,6 +752,9 @@ class _ChatScreenState extends State<ChatScreen> {
             }
           });
         }
+=======
+        if (mounted) setState(() => _isRecording = true);
+>>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
       } else {
         if (mounted) {
           ScaffoldMessenger.of(context).showSnackBar(
@@ -729,6 +769,7 @@ class _ChatScreenState extends State<ChatScreen> {
     }
   }
 
+<<<<<<< HEAD
   Future<void> _stopRecording({bool cancel = false}) async {
     try {
       _recordTimer?.cancel();
@@ -752,24 +793,40 @@ class _ChatScreenState extends State<ChatScreen> {
 
         setState(() {
           _selectedFile = file;
+=======
+  Future<void> _stopRecording() async {
+    try {
+      final path = await _audioRecorder.stop();
+      if (mounted) setState(() => _isRecording = false);
+
+      if (path != null) {
+        setState(() {
+          _selectedFile = File(path);
+>>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
           _selectedFileName =
               'audio_${DateTime.now().millisecondsSinceEpoch}.m4a';
           _selectedFileType = 'audio';
         });
+<<<<<<< HEAD
         // ✅ Enviar automáticamente al terminar de grabar
         _uploadAndSendSelected();
+=======
+>>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
       }
     } catch (e) {
       debugPrint("Error al detener grabación: $e");
     }
   }
 
+<<<<<<< HEAD
   String _formatDuration(int seconds) {
     int mins = seconds ~/ 60;
     int secs = seconds % 60;
     return "${mins.toString().padLeft(2, '0')}:${secs.toString().padLeft(2, '0')}";
   }
 
+=======
+>>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
   // ✅ Upload y envío (Firestore Base64 para saltar Storage)
   Future<void> _uploadAndSendSelected() async {
     if (_selectedFile == null) return;
@@ -844,14 +901,27 @@ class _ChatScreenState extends State<ChatScreen> {
 
   // ✅ Enviar mensaje de imagen (Base64)
   Future<void> _enviarMensajeImagen(String base64Data) async {
+<<<<<<< HEAD
     final data = _camposBaseMensaje()
       ..addAll({'mensaje': base64Data, 'type': 'image'});
+=======
+>>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
     await FirebaseFirestore.instance
         .collection('chat')
         .doc(_chatId)
         .collection('mensajes')
+<<<<<<< HEAD
         .add(data);
     _limpiarRespuesta();
+=======
+        .add({
+      'senderId': _currentUserId,
+      'receiverId': widget.receiverId,
+      'mensaje': base64Data,
+      'type': 'image',
+      'timestamp': FieldValue.serverTimestamp(),
+    });
+>>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
     await FirebaseFirestore.instance.collection('chat').doc(_chatId).set({
       'users': [_currentUserId, widget.receiverId],
       'lastMessage': "📷 Foto",
@@ -861,14 +931,27 @@ class _ChatScreenState extends State<ChatScreen> {
 
   // ✅ Enviar mensaje de audio (Base64)
   Future<void> _enviarMensajeAudio(String base64Data) async {
+<<<<<<< HEAD
     final data = _camposBaseMensaje()
       ..addAll({'mensaje': base64Data, 'type': 'audio'});
+=======
+>>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
     await FirebaseFirestore.instance
         .collection('chat')
         .doc(_chatId)
         .collection('mensajes')
+<<<<<<< HEAD
         .add(data);
     _limpiarRespuesta();
+=======
+        .add({
+      'senderId': _currentUserId,
+      'receiverId': widget.receiverId,
+      'mensaje': base64Data,
+      'type': 'audio',
+      'timestamp': FieldValue.serverTimestamp(),
+    });
+>>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
     await FirebaseFirestore.instance.collection('chat').doc(_chatId).set({
       'users': [_currentUserId, widget.receiverId],
       'lastMessage': "🎤 Audio",
@@ -878,18 +961,32 @@ class _ChatScreenState extends State<ChatScreen> {
 
   // ✅ Enviar mensaje de archivo (Base64)
   Future<void> _enviarMensajeArchivo(String base64Data, String fileName) async {
+<<<<<<< HEAD
     final data = _camposBaseMensaje()
       ..addAll({
         'mensaje': base64Data,
         'fileName': fileName,
         'type': 'file',
       });
+=======
+>>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
     await FirebaseFirestore.instance
         .collection('chat')
         .doc(_chatId)
         .collection('mensajes')
+<<<<<<< HEAD
         .add(data);
     _limpiarRespuesta();
+=======
+        .add({
+      'senderId': _currentUserId,
+      'receiverId': widget.receiverId,
+      'mensaje': base64Data,
+      'fileName': fileName,
+      'type': 'file',
+      'timestamp': FieldValue.serverTimestamp(),
+    });
+>>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
     await FirebaseFirestore.instance.collection('chat').doc(_chatId).set({
       'users': [_currentUserId, widget.receiverId],
       'lastMessage': "📎 $fileName",
@@ -939,6 +1036,7 @@ class _ChatScreenState extends State<ChatScreen> {
     );
   }
 
+<<<<<<< HEAD
   // ─── Tema del Chat ────────────────────────────────────────────────────────
   Future<void> _cargarTemaChat() async {
     final doc = await FirebaseFirestore.instance.collection('chat').doc(_chatId).get();
@@ -1282,6 +1380,90 @@ class _ChatScreenState extends State<ChatScreen> {
           children: [
             Expanded(
               child: StreamBuilder<QuerySnapshot>(
+=======
+  @override
+  void dispose() {
+    _messageController.dispose();
+    _scrollController.dispose();
+    _audioPlayer.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    const Color primaryGreen = Color(0xFF6BCE7A);
+    const Color darkText = Color(0xFF334A5F);
+
+    return Scaffold(
+      backgroundColor: Colors.white,
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        elevation: 0.5,
+        leading: IconButton(
+          icon:
+              const Icon(Icons.arrow_back_ios_new, color: darkText, size: 20),
+          onPressed: () => Navigator.pop(context),
+        ),
+        titleSpacing: 0,
+        title: Row(
+          children: [
+            CircleAvatar(
+              radius: 18,
+              backgroundColor: primaryGreen.withOpacity(0.2),
+              child: widget.receiverPhoto.isNotEmpty
+                  ? ClipOval(
+                      child: Image.network(
+                        widget.receiverPhoto,
+                        width: 36,
+                        height: 36,
+                        fit: BoxFit.cover,
+                        errorBuilder: (_, __, ___) => Text(
+                          widget.receiverName.isNotEmpty
+                              ? widget.receiverName[0].toUpperCase()
+                              : '?',
+                          style: const TextStyle(
+                              color: darkText,
+                              fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                    )
+                  : Text(
+                      widget.receiverName.isNotEmpty
+                          ? widget.receiverName[0].toUpperCase()
+                          : '?',
+                      style: const TextStyle(
+                          color: darkText, fontWeight: FontWeight.bold),
+                    ),
+            ),
+            const SizedBox(width: 12),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(widget.receiverName,
+                    style: const TextStyle(
+                        color: darkText,
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold)),
+                const Text("En línea ahora",
+                    style: TextStyle(color: primaryGreen, fontSize: 11)),
+              ],
+            ),
+          ],
+        ),
+        actions: [
+          IconButton(
+              icon: const Icon(Icons.call, color: darkText),
+              onPressed: () => _iniciarLlamada(false)),
+          IconButton(
+              icon: const Icon(Icons.videocam, color: darkText),
+              onPressed: () => _iniciarLlamada(true)),
+        ],
+      ),
+      body: Column(
+        children: [
+          Expanded(
+            child: StreamBuilder<QuerySnapshot>(
+>>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
               stream: FirebaseFirestore.instance
                   .collection('chat')
                   .doc(_chatId)
@@ -1302,6 +1484,7 @@ class _ChatScreenState extends State<ChatScreen> {
                 return ListView.builder(
                   controller: _scrollController,
                   reverse: true,
+<<<<<<< HEAD
                   physics: const BouncingScrollPhysics(
                     parent: AlwaysScrollableScrollPhysics(),
                   ),
@@ -1383,6 +1566,35 @@ class _ChatScreenState extends State<ChatScreen> {
                           ? () => _openFullScreenImage(msgData['mensaje'] ?? "")
                           : null,
                     );
+=======
+                  padding: const EdgeInsets.all(20),
+                  itemCount: messages.length,
+                  itemBuilder: (context, index) {
+                    final msgData =
+                        messages[index].data() as Map<String, dynamic>;
+                    final bool isMe =
+                        msgData['senderId'] == _currentUserId;
+                    final String type = msgData['type'] ?? 'text';
+                    switch (type) {
+                      case 'image':
+                        return _buildImageBubble(msgData['mensaje'] ?? "",
+                            isMe, msgData['timestamp'] as Timestamp?);
+                      case 'file':
+                        return _buildFileBubble(
+                            msgData['mensaje'] ?? "",
+                            msgData['fileName'] ?? "Archivo",
+                            isMe,
+                            msgData['timestamp'] as Timestamp?);
+                      case 'audio':
+                        return _buildAudioBubble(msgData['mensaje'] ?? "",
+                            isMe, msgData['timestamp'] as Timestamp?);
+                      default:
+                        return _buildMessageBubble(
+                            msgData['mensaje'] ?? "",
+                            isMe,
+                            msgData['timestamp'] as Timestamp?);
+                    }
+>>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
                   },
                 );
               },
@@ -1411,6 +1623,7 @@ class _ChatScreenState extends State<ChatScreen> {
               ),
             ),
 
+<<<<<<< HEAD
           if (_editingMessageId != null)
             Container(
               width: double.infinity,
@@ -1485,6 +1698,11 @@ class _ChatScreenState extends State<ChatScreen> {
           if (!_selectionMode) _buildMessageInput(primaryGreen),
 
           if (_showEmoji && !_selectionMode)
+=======
+          _buildMessageInput(primaryGreen),
+
+          if (_showEmoji)
+>>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
             SizedBox(
               height: 250,
               child: emoji.EmojiPicker(
@@ -1516,9 +1734,14 @@ class _ChatScreenState extends State<ChatScreen> {
             ),
         ],
       ),
+<<<<<<< HEAD
     ),
   );
 }
+=======
+    );
+  }
+>>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
 
   // ── Preview panel ──────────────────────────────────────────────────────────
   Widget _buildPreviewPanel(Color green) {
@@ -1605,12 +1828,16 @@ class _ChatScreenState extends State<ChatScreen> {
 
   // ── Burbujas ───────────────────────────────────────────────────────────────
   // ── Burbujas (Diseño Estilo Moderno) ───────────────────────────────────────
+<<<<<<< HEAD
   Widget _buildImageBubble(
     String data,
     bool isMe,
     Timestamp? timestamp, {
     Map<String, dynamic>? replyTo,
   }) {
+=======
+  Widget _buildImageBubble(String data, bool isMe, Timestamp? timestamp) {
+>>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
     return Align(
       alignment: isMe ? Alignment.centerRight : Alignment.centerLeft,
       child: Container(
@@ -1618,8 +1845,13 @@ class _ChatScreenState extends State<ChatScreen> {
         constraints:
             BoxConstraints(maxWidth: MediaQuery.of(context).size.width * 0.7),
         decoration: BoxDecoration(
+<<<<<<< HEAD
           color: isMe ? _bubbleMeColor : _bubbleOtherColor,
           borderRadius: _getBubbleRadius(isMe),
+=======
+          color: isMe ? const Color(0xFFE7FFDB) : Colors.white,
+          borderRadius: BorderRadius.circular(15),
+>>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
           boxShadow: [
             BoxShadow(
               color: Colors.black.withOpacity(0.08),
@@ -1632,6 +1864,7 @@ class _ChatScreenState extends State<ChatScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
+<<<<<<< HEAD
             if (replyTo != null) _buildCitaRespuesta(replyTo, isMe),
             ClipRRect(
               borderRadius: _bubbleDesign == 'rounded'
@@ -1648,6 +1881,26 @@ class _ChatScreenState extends State<ChatScreen> {
                       base64Data: data,
                       fit: BoxFit.cover,
                     ),
+=======
+            GestureDetector(
+              onTap: () => _openFullScreenImage(data),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(12),
+                child: data.startsWith('http')
+                    ? Image.network(
+                        data,
+                        fit: BoxFit.cover,
+                        errorBuilder: (_, __, ___) =>
+                            const Icon(Icons.broken_image, size: 80),
+                      )
+                    : Image.memory(
+                        base64Decode(data),
+                        fit: BoxFit.cover,
+                        errorBuilder: (_, __, ___) =>
+                            const Icon(Icons.broken_image, size: 80),
+                      ),
+              ),
+>>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
             ),
             if (timestamp != null)
               Padding(
@@ -1704,6 +1957,7 @@ class _ChatScreenState extends State<ChatScreen> {
     );
   }
 
+<<<<<<< HEAD
   Widget _buildAvatarLetter() {
     const Color darkText = Color(0xFF334A5F);
     return Text(
@@ -1712,6 +1966,8 @@ class _ChatScreenState extends State<ChatScreen> {
     );
   }
 
+=======
+>>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
   // ✅ Nueva función para descargar archivos (incluso Base64) a la carpeta de Descargas
   Future<void> _downloadFileToGallery(String data, String fileName) async {
     try {
@@ -1767,12 +2023,16 @@ class _ChatScreenState extends State<ChatScreen> {
   }
 
   Widget _buildFileBubble(
+<<<<<<< HEAD
     String data,
     String fileName,
     bool isMe,
     Timestamp? timestamp, {
     Map<String, dynamic>? replyTo,
   }) {
+=======
+      String data, String fileName, bool isMe, Timestamp? timestamp) {
+>>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
     return Align(
       alignment: isMe ? Alignment.centerRight : Alignment.centerLeft,
       child: Container(
@@ -1780,8 +2040,13 @@ class _ChatScreenState extends State<ChatScreen> {
         constraints:
             BoxConstraints(maxWidth: MediaQuery.of(context).size.width * 0.75),
         decoration: BoxDecoration(
+<<<<<<< HEAD
           color: isMe ? _bubbleMeColor : _bubbleOtherColor,
           borderRadius: _getBubbleRadius(isMe),
+=======
+          color: isMe ? const Color(0xFFE7FFDB) : Colors.white,
+          borderRadius: BorderRadius.circular(15),
+>>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
           boxShadow: [
             BoxShadow(
               color: Colors.black.withOpacity(0.05),
@@ -1794,7 +2059,10 @@ class _ChatScreenState extends State<ChatScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
+<<<<<<< HEAD
             if (replyTo != null) _buildCitaRespuesta(replyTo, isMe),
+=======
+>>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
             GestureDetector(
               onTap: () async {
                 if (data.startsWith('http')) {
@@ -1842,6 +2110,7 @@ class _ChatScreenState extends State<ChatScreen> {
     );
   }
 
+<<<<<<< HEAD
   String _formatTime(Timestamp timestamp) {
     final dt = timestamp.toDate();
     return '${dt.hour.toString().padLeft(2, '0')}:${dt.minute.toString().padLeft(2, '0')}';
@@ -2041,12 +2310,62 @@ class _ChatScreenState extends State<ChatScreen> {
               },
             ),
             const SizedBox(height: 20),
+=======
+  Widget _buildAudioBubble(String data, bool isMe, Timestamp? timestamp) {
+    return Align(
+      alignment: isMe ? Alignment.centerRight : Alignment.centerLeft,
+      child: Container(
+        margin: const EdgeInsets.only(bottom: 12),
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+        decoration: BoxDecoration(
+          color: isMe ? const Color(0xFFE7FFDB) : Colors.white,
+          borderRadius: BorderRadius.circular(20),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.05),
+              blurRadius: 3,
+              offset: const Offset(0, 1),
+            )
+          ],
+        ),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            IconButton(
+              icon: Icon(Icons.play_circle_fill,
+                  size: 32, color: isMe ? Colors.green : Colors.grey),
+              onPressed: () async {
+                if (data.startsWith('http')) {
+                  await _audioPlayer.play(UrlSource(data));
+                } else {
+                  try {
+                    final bytes = base64Decode(data);
+                    final tempDir = await getTemporaryDirectory();
+                    final file =
+                        await File('${tempDir.path}/temp_audio.m4a').create();
+                    await file.writeAsBytes(bytes);
+                    await _audioPlayer.play(DeviceFileSource(file.path));
+                  } catch (e) {
+                    debugPrint("Error al reproducir audio: $e");
+                  }
+                }
+              },
+            ),
+            const Icon(Icons.graphic_eq, color: Colors.grey),
+            const SizedBox(width: 8),
+            if (timestamp != null)
+              Text(
+                _formatTime(timestamp),
+                style: TextStyle(color: Colors.grey.shade600, fontSize: 10),
+              ),
+>>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
           ],
         ),
       ),
     );
   }
 
+<<<<<<< HEAD
   BorderRadius _getBubbleRadius(bool isMe) {
     switch (_bubbleDesign) {
       case 'classic':
@@ -2076,10 +2395,15 @@ class _ChatScreenState extends State<ChatScreen> {
     bool edited = false,
     Map<String, dynamic>? replyTo,
   }) {
+=======
+  Widget _buildMessageBubble(
+      String text, bool isMe, Timestamp? timestamp) {
+>>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
     return Align(
       alignment: isMe ? Alignment.centerRight : Alignment.centerLeft,
       child: Container(
         margin: const EdgeInsets.only(bottom: 12),
+<<<<<<< HEAD
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
         constraints:
             BoxConstraints(maxWidth: MediaQuery.of(context).size.width * 0.75),
@@ -2093,12 +2417,27 @@ class _ChatScreenState extends State<ChatScreen> {
               offset: const Offset(0, 1),
             )
           ],
+=======
+        padding:
+            const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+        constraints: BoxConstraints(
+            maxWidth: MediaQuery.of(context).size.width * 0.75),
+        decoration: BoxDecoration(
+          color: isMe ? Colors.black : const Color(0xFFF1F4F7),
+          borderRadius: BorderRadius.only(
+            topLeft: const Radius.circular(20),
+            topRight: const Radius.circular(20),
+            bottomLeft: Radius.circular(isMe ? 20 : 0),
+            bottomRight: Radius.circular(isMe ? 0 : 20),
+          ),
+>>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
         ),
         child: Column(
           crossAxisAlignment:
               isMe ? CrossAxisAlignment.end : CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
           children: [
+<<<<<<< HEAD
             if (replyTo != null) _buildCitaRespuesta(replyTo, isMe),
             Text(
               text,
@@ -2145,6 +2484,24 @@ class _ChatScreenState extends State<ChatScreen> {
                         ),
                       ),
                   ],
+=======
+            Text(text,
+                style: TextStyle(
+                    color: isMe
+                        ? Colors.white
+                        : const Color(0xFF334A5F),
+                    fontSize: 15)),
+            if (timestamp != null)
+              Padding(
+                padding: const EdgeInsets.only(top: 4),
+                child: Text(
+                  _formatTime(timestamp),
+                  style: TextStyle(
+                      color: isMe
+                          ? Colors.white.withOpacity(0.6)
+                          : Colors.grey.shade500,
+                      fontSize: 10),
+>>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
                 ),
               ),
           ],
@@ -2152,6 +2509,7 @@ class _ChatScreenState extends State<ChatScreen> {
       ),
     );
   }
+<<<<<<< HEAD
 }
 
 class AudioMessageBubble extends StatefulWidget {
@@ -2236,12 +2594,15 @@ class _AudioMessageBubbleState extends State<AudioMessageBubble> {
     String seconds = twoDigits(duration.inSeconds.remainder(60));
     return "$minutes:$seconds";
   }
+=======
+>>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
 
   String _formatTime(Timestamp timestamp) {
     final dt = timestamp.toDate();
     return '${dt.hour.toString().padLeft(2, '0')}:${dt.minute.toString().padLeft(2, '0')}';
   }
 
+<<<<<<< HEAD
   @override
   Widget build(BuildContext context) {
     final Color green = const Color(0xFF6BCE7A);
@@ -2355,11 +2716,85 @@ class _AudioMessageBubbleState extends State<AudioMessageBubble> {
                       fontSize: 10),
                 ),
               ),
+=======
+  Widget _buildMessageInput(Color green) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 10),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        boxShadow: [
+          BoxShadow(
+              color: Colors.black.withOpacity(0.05),
+              blurRadius: 10,
+              offset: const Offset(0, -2))
+        ],
+      ),
+      child: SafeArea(
+        top: false,
+        child: Row(
+          children: [
+            IconButton(
+              icon:
+                  const Icon(Icons.camera_alt_outlined, color: Colors.grey),
+              onPressed: () => _pickImage(ImageSource.camera),
+            ),
+            IconButton(
+              icon: const Icon(Icons.image_outlined, color: Colors.grey),
+              onPressed: () => _pickImage(ImageSource.gallery),
+            ),
+            // Mantener presionado para grabar, soltar para detener
+            GestureDetector(
+              onLongPressStart: (_) => _startRecording(),
+              onLongPressEnd: (_) => _stopRecording(),
+              child: Padding(
+                padding: const EdgeInsets.all(8),
+                child: Icon(
+                  _isRecording ? Icons.stop_circle : Icons.mic_none_rounded,
+                  color: _isRecording ? Colors.red : Colors.grey,
+                  size: 24,
+                ),
+              ),
+            ),
+            IconButton(
+              icon: const Icon(Icons.attach_file, color: Colors.grey),
+              onPressed: _pickFile,
+            ),
+            Expanded(
+              child: Container(
+                padding: const EdgeInsets.symmetric(horizontal: 12),
+                decoration: BoxDecoration(
+                  color: const Color(0xFFF1F4F7),
+                  borderRadius: BorderRadius.circular(25),
+                ),
+                child: TextField(
+                  controller: _messageController,
+                  textInputAction: TextInputAction.send,
+                  onSubmitted: (_) => _sendMessage(),
+                  decoration: InputDecoration(
+                    hintText: "Escribe un mensaje...",
+                    border: InputBorder.none,
+                    contentPadding:
+                        const EdgeInsets.symmetric(vertical: 10),
+                    suffixIcon: IconButton(
+                      icon: Icon(Icons.emoji_emotions_outlined,
+                          color: _showEmoji ? green : Colors.grey),
+                      onPressed: _mostrarEmojis,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            IconButton(
+              icon: Icon(Icons.send_rounded, color: green),
+              onPressed: _sendMessage,
+            ),
+>>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
           ],
         ),
       ),
     );
   }
+<<<<<<< HEAD
 }
 
 // ✅ Widget optimizado para mostrar imágenes Base64 sin recalcular cada vez
@@ -2421,3 +2856,6 @@ class _Base64ImageState extends State<Base64Image> {
   }
 }
 
+=======
+}
+>>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518

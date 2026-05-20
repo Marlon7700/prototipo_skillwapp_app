@@ -58,7 +58,10 @@ flutter:
   assets:
     - assets/Fondo_SkillSwap.png
     - assets/icono.png
+<<<<<<< HEAD
     - assets/icon.png
+=======
+>>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
     - assets/imagen_skillwasp.jpeg
     - assets/Chatbot_SkillSwap.png
     - assets/Chatbot SkillSwap re.png

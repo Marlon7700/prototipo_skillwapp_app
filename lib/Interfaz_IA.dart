@@ -237,7 +237,11 @@ class _InterfazIAState extends State<InterfazIA> with SingleTickerProviderStateM
         }
       }
       
+<<<<<<< HEAD
       if (chatTitle.length > 35) chatTitle = "${chatTitle.substring(0, 32)}...";
+=======
+      if (chatTitle.length > 35) chatTitle = chatTitle.substring(0, 32) + "...";
+>>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
 
       if (_currentChatId == null) {
         // Crear nuevo documento

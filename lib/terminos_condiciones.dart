@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+<<<<<<< HEAD
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+=======
+>>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
 
 class TermsAndConditionsScreen extends StatefulWidget {
   const TermsAndConditionsScreen({super.key});
@@ -163,6 +166,7 @@ class _TermsAndConditionsScreenState extends State<TermsAndConditionsScreen> {
                 elevation: 0,
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
               ),
+<<<<<<< HEAD
               onPressed: _hasAccepted ? () async {
                 final user = FirebaseAuth.instance.currentUser;
                 if (user != null) {
@@ -172,6 +176,9 @@ class _TermsAndConditionsScreenState extends State<TermsAndConditionsScreen> {
                   }, SetOptions(merge: true));
                 }
                 if (!mounted) return;
+=======
+              onPressed: _hasAccepted ? () {
+>>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
                 Navigator.pop(context, true);
               } : null,
               child: const Text('EMPEZAR AHORA', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, letterSpacing: 1.1)),
