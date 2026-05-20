@@ -1144,7 +1144,6 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                             const Text(
                               "Ordenar por: ",
                               style: TextStyle(
-<<<<<<< HEAD
                                 fontWeight: FontWeight.w600,
                                 color: _darkText,
                                 fontSize: 15,
@@ -1164,35 +1163,16 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                     offset: const Offset(0, 2),
                                   ),
                                 ],
-=======
-                                  fontWeight: FontWeight.bold, color: darkText),
-                            ),
-                            const SizedBox(width: 8),
-                            Container(
-                              padding: const EdgeInsets.symmetric(horizontal: 12),
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(15),
-                                border: Border.all(color: Colors.grey.withOpacity(0.3)),
->>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
                               ),
                               child: DropdownButtonHideUnderline(
                                 child: DropdownButton<String>(
                                   value: _currentSort,
-<<<<<<< HEAD
                                   icon: const Icon(Icons.keyboard_arrow_down_rounded, color: _primaryGreen, size: 22),
                                   style: const TextStyle(
                                     color: _darkText,
                                     fontWeight: FontWeight.w600,
                                     fontSize: 14,
                                   ),
-=======
-                                  icon: const Icon(Icons.arrow_drop_down, color: primaryGreen),
-                                  style: const TextStyle(
-                                      color: Color(0xFF334A5F),
-                                      fontWeight: FontWeight.w600,
-                                      fontSize: 14),
->>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
                                   onChanged: (String? newValue) {
                                     if (newValue != null) {
                                       setState(() {
@@ -1215,17 +1195,12 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                             ),
                           ],
                         ),
-<<<<<<< HEAD
                         const SizedBox(height: 24),
-=======
-                        const SizedBox(height: 30),
->>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
 
                         // --- Offer / Need ---
                         Row(
                           children: [
                             Expanded(child: _buildOfferCard(primaryGreen)),
-<<<<<<< HEAD
                             Padding(
                               padding: const EdgeInsets.symmetric(horizontal: 8),
                               child: Icon(
@@ -1233,12 +1208,6 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                 color: primaryGreen.withValues(alpha: 0.9),
                                 size: 32,
                               ),
-=======
-                            const Padding(
-                              padding: EdgeInsets.symmetric(horizontal: 10),
-                              child: Icon(Icons.swap_horiz_rounded,
-                                  color: primaryGreen, size: 35),
->>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
                             ),
                             Expanded(child: _buildNeedCard()),
                           ],
@@ -1249,7 +1218,6 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                         const SizedBox(height: 40),
 
                         // --- Matches ---
-<<<<<<< HEAD
                         const Text(
                           "Suggested Matches",
                           style: TextStyle(
@@ -1264,14 +1232,6 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                           style: TextStyle(fontSize: 13, color: Colors.grey.shade600),
                         ),
                         const SizedBox(height: 12),
-=======
-                        const Text("Suggested Matches",
-                            style: TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
-                                color: darkText)),
-                        const SizedBox(height: 15),
->>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
 
                         // StreamBuilder para mostrar usuarios desde Firestore (Lista oficial)
                         StreamBuilder<QuerySnapshot>(
@@ -1397,12 +1357,8 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                     var userData = docs[index].data() as Map<String, dynamic>;
                                     String uid = docs[index].id;
                                     String name = userData['nombre'] ?? userData['email']?.split('@')[0] ?? "Usuario";
-<<<<<<< HEAD
                                     // Corregido: Buscar en photoUrl (inglés) o fotoUrl (español) para que se vea siempre
                                     String photo = userData['photoUrl'] ?? userData['fotoUrl'] ?? "";
-=======
-                                    String photo = userData['fotoUrl'] ?? 'https://ui-avatars.com/api/?name=$name&background=random';
->>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
                                     
                                     return GestureDetector(
                                       onTap: () => _mostrarDetallesUsuario(context, userData, uid),
@@ -1413,11 +1369,8 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                         needs: userData['necesita'] ?? "Por definir",
                                         offers: userData['ofrece'] ?? "Por definir",
                                         imageUrl: photo,
-<<<<<<< HEAD
                                         isFavorite: favoritosIds.contains(uid),
                                         onToggleFavorite: () => _toggleFavorito(uid),
-=======
->>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
                                       ),
                                     );
                                   },
@@ -1426,14 +1379,9 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                             );
                           },
                         ),
-<<<<<<< HEAD
                         const SizedBox(height: 28),
                         _buildSeccionFavoritos(favoritosIds),
                         const SizedBox(height: 20),
-=======
-                        const SizedBox(height: 30),
-                        const SizedBox(height: 10),
->>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
                       ],
                     ),
                   ),
@@ -1442,7 +1390,6 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                 // --- Copyright ---
                 const Padding(
                   padding: EdgeInsets.only(bottom: 20),
-<<<<<<< HEAD
                   child: Center(
                     child: Text(
                       '© 2026 SkillSwap. Todos los derechos reservados.',
@@ -1453,35 +1400,19 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                         fontWeight: FontWeight.w400,
                       ),
                     ),
-=======
-                  child: Text(
-                    '© 2026 SkillSwap. Todos los derechos reservados.',
-                    style: TextStyle(
-                        color: darkText,
-                        fontSize: 12,
-                        fontWeight: FontWeight.w500),
->>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
                   ),
                 ),
               ],
             ),
           ),
 
-<<<<<<< HEAD
           // --- Bot IA abajo a la derecha (grande) ---
-=======
-          // --- Chat AI Bot con Saludo Animado ---
->>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
           Positioned(
             bottom: 60,
             right: 25,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
-<<<<<<< HEAD
-=======
-                // Globo de saludo animado
->>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
                 if (_showGreeting)
                   FadeTransition(
                     opacity: _bubbleOpacityAnimation,
@@ -1491,19 +1422,12 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                       child: Container(
                         margin: const EdgeInsets.only(bottom: 10, right: 10),
                         padding: const EdgeInsets.symmetric(
-<<<<<<< HEAD
                           horizontal: 16,
                           vertical: 10,
                         ),
                         decoration: BoxDecoration(
                           color: _teal,
                           borderRadius: const BorderRadius.only(
-=======
-                            horizontal: 16, vertical: 10),
-                        decoration: const BoxDecoration(
-                          color: Color(0xFF00A99D), // Color secundario para el chat
-                          borderRadius: BorderRadius.only(
->>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
                             topLeft: Radius.circular(15),
                             topRight: Radius.circular(15),
                             bottomLeft: Radius.circular(15),
@@ -1511,45 +1435,28 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                           ),
                           boxShadow: [
                             BoxShadow(
-<<<<<<< HEAD
                               color: Colors.black.withValues(alpha: 0.12),
                               blurRadius: 5,
                               offset: Offset(0, 2),
                             ),
-=======
-                                color: Colors.black12,
-                                blurRadius: 5,
-                                offset: Offset(0, 2))
->>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
                           ],
                         ),
                         child: const Text(
                           "Hola, bienvenido a SkillSwap",
                           style: TextStyle(
-<<<<<<< HEAD
                             color: Colors.white,
                             fontWeight: FontWeight.w600,
                             fontSize: 14,
                           ),
-=======
-                              color: Colors.white,
-                              fontWeight: FontWeight.w600,
-                              fontSize: 14),
->>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
                         ),
                       ),
                     ),
                   ),
-<<<<<<< HEAD
-=======
-                // Botón del Bot IA animado
->>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
                 _buildAIBotButton(primaryGreen),
               ],
             ),
           ),
         ],
-<<<<<<< HEAD
       );
     },
   ),
@@ -1568,28 +1475,12 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
             blurRadius: 16,
             offset: const Offset(0, 6),
           ),
-=======
-      ),
-    );
-  }
-
-  Widget _buildOfferCard(Color green) {
-    return Container(
-      height: 200,
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(20),
-        boxShadow: [
-          // ignore: deprecated_member_use
-          BoxShadow(color: Colors.black.withOpacity(0.05), blurRadius: 10)
->>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
         ],
       ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Container(
-<<<<<<< HEAD
             padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 5),
             decoration: BoxDecoration(
               color: green,
@@ -1617,30 +1508,11 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
               color: _darkText,
             ),
           ),
-=======
-            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
-            decoration: BoxDecoration(
-                color: green, borderRadius: BorderRadius.circular(20)),
-            child: const Text("I OFFER",
-                style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 12)),
-          ),
-          const SizedBox(height: 20),
-          const Icon(Icons.laptop_chromebook_rounded,
-              size: 60, color: Color(0xFF00A99D)),
-          const SizedBox(height: 10),
-          const Text("Graphic Design",
-              style: TextStyle(
-                  fontWeight: FontWeight.w600, color: Color(0xFF334A5F))),
->>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
         ],
       ),
     )
   }
 
-<<<<<<< HEAD
   Future<void> _toggleFavorito(String uid) async {
     final user = FirebaseAuth.instance.currentUser;
     if (user == null) return;
@@ -1689,24 +1561,12 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
             blurRadius: 16,
             offset: const Offset(0, 6),
           ),
-=======
-  Widget _buildNeedCard() {
-    return Container(
-      height: 200,
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(20),
-        boxShadow: [
-          // ignore: deprecated_member_use
-          BoxShadow(color: Colors.black.withOpacity(0.05), blurRadius: 10)
->>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
         ],
       ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Container(
-<<<<<<< HEAD
             padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 5),
             decoration: BoxDecoration(
               color: _teal,
@@ -1830,30 +1690,11 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
             },
           ),
         ),
-=======
-            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
-            decoration: BoxDecoration(
-                color: const Color(0xFF00A99D),
-                borderRadius: BorderRadius.circular(20)),
-            child: const Text("I NEED",
-                style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 12)),
-          ),
-          const SizedBox(height: 20),
-          const Icon(Icons.forum_rounded, size: 60, color: Color(0xFF8CC63F)),
-          const SizedBox(height: 10),
-          const Text("English Practice",
-              style: TextStyle(
-                  fontWeight: FontWeight.w600, color: Color(0xFF334A5F))),
->>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
         ],
       ),
     );
   }
 
-<<<<<<< HEAD
   Widget _buildFavoritoAvatarItem({
     required String uid,
     required String name,
@@ -1949,8 +1790,6 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
     );
   }
 
-=======
->>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
   Widget _buildFindMatchButton(Color green) {
     return Container(
       width: double.infinity,
