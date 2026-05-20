@@ -447,7 +447,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                     ),
                     const SizedBox(height: 20),
                     Text(name, style: const TextStyle(fontSize: 26, fontWeight: FontWeight.bold, color: Color(0xFF334A5F))),
-<<<<<<< HEAD
+
                     
                     // Mostrar Promedio de Estrellas
                     StreamBuilder<QuerySnapshot>(
@@ -477,8 +477,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                       },
                     ),
 
-=======
->>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
+
                     Text(data['email'] ?? "", style: const TextStyle(color: Colors.grey)),
                     const SizedBox(height: 30),
                     
@@ -523,8 +522,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
                       ),
                     ),
-<<<<<<< HEAD
-                    const SizedBox(height: 12),
+       const SizedBox(height: 12),
                     StatefulBuilder(
                       builder: (context, setState) {
                         return OutlinedButton.icon(
@@ -543,8 +541,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                         );
                       }
                     ),
-=======
->>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
+
                   ],
                 ),
               ),
@@ -571,11 +568,11 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
               Expanded(child: Text(item['value'] as String, style: const TextStyle(color: Colors.black87), overflow: TextOverflow.ellipsis)),
             ],
           ),
-<<<<<<< HEAD
+
         )),
-=======
+
         )).toList(),
->>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
+
       ],
     )
   }
@@ -685,9 +682,9 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-<<<<<<< HEAD
+
     const Color primaryGreen = _primaryGreen;
-=======
+
     const Color primaryGreen = const Color(0xFF6BCE7A);
     const Color darkText = Color(0xFF334A5F);
 >>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
@@ -696,15 +693,15 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
     final user = FirebaseAuth.instance.currentUser;
     String userName = "Guest";
     if (user != null && user.email != null) {
-<<<<<<< HEAD
-=======
+
+
       // Extrae la parte antes del @ del correo
->>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
+
       userName = user.email!.split('@')[0];
     }
 
     return Scaffold(
-<<<<<<< HEAD
+
       body: user == null 
         ? const Center(child: CircularProgressIndicator())
         : StreamBuilder<DocumentSnapshot>(
@@ -883,7 +880,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                               BoxShadow(
                                 color: Colors.black.withValues(alpha: 0.06),
                                 blurRadius: 14,
-=======
+
       body: Stack(
         children: [
           // 1. FONDO
@@ -983,20 +980,20 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                               BoxShadow(
                                 color: Colors.black.withOpacity(0.05),
                                 blurRadius: 10,
->>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
+
                                 offset: const Offset(0, 4),
                               ),
                             ],
                           ),
                           child: Row(
                             children: [
-<<<<<<< HEAD
+
                               Icon(Icons.search_rounded, color: _primaryGreen.withValues(alpha: 0.85), size: 22),
                               const SizedBox(width: 10),
-=======
+
                               const Icon(Icons.search, color: Color(0xFF6BCE7A)),
                               const SizedBox(width: 12),
->>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
+
                               Expanded(
                                 child: TextField(
                                   controller: _searchController,
@@ -1005,7 +1002,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                       _searchQuery = value.toLowerCase();
                                     });
                                   },
-<<<<<<< HEAD
+
                                   style: const TextStyle(color: _darkText, fontSize: 15),
                                   decoration: const InputDecoration(
                                     hintText: "Buscar personas o habilidades",
@@ -1013,17 +1010,17 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                     border: InputBorder.none,
                                     isDense: true,
                                     contentPadding: EdgeInsets.zero,
-=======
+
                                   decoration: const InputDecoration(
                                     hintText: "Buscar personas o habilidades",
                                     hintStyle: TextStyle(color: Colors.grey, fontSize: 15),
                                     border: InputBorder.none,
->>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
+
                                   ),
                                 ),
                               ),
                               Container(
-<<<<<<< HEAD
+
                                 height: 28,
                                 width: 1,
                                 color: Colors.grey.withValues(alpha: 0.25),
@@ -1037,7 +1034,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                   color: _primaryGreen,
                                   fontWeight: FontWeight.w600,
                                   fontSize: 14,
-=======
+
                                 height: 25,
                                 width: 1,
                                 color: Colors.grey.withOpacity(0.3),
@@ -1050,25 +1047,25 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                 style: TextStyle(
                                   color: Color(0xFF6BCE7A),
                                   fontWeight: FontWeight.w600,
->>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
+
                                 ),
                               ),
                             ],
                           ),
                         ),
                         const SizedBox(height: 15),
-<<<<<<< HEAD
+
                         Row(
                           children: [
                             Expanded(
                               child: GestureDetector(
-=======
+
                         SingleChildScrollView(
                           scrollDirection: Axis.horizontal,
                           child: Row(
                             children: [
                               GestureDetector(
->>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
+
                                 onTap: () {
                                   setState(() {
                                     _filterByPeople = !_filterByPeople;
@@ -1079,15 +1076,15 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                 },
                                 child: _buildFilterChip(Icons.person, "Personas", _filterByPeople),
                               ),
-<<<<<<< HEAD
+
                             ),
                             const SizedBox(width: 15),
                             Expanded(
                               child: GestureDetector(
-=======
+
                               const SizedBox(width: 10),
                               GestureDetector(
->>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
+
                                 onTap: () {
                                   setState(() {
                                     _filterBySkills = !_filterBySkills;
@@ -1098,12 +1095,12 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                 },
                                 child: _buildFilterChip(Icons.lightbulb_outline, "Habilidades", _filterBySkills),
                               ),
-<<<<<<< HEAD
+
                             ),
                           ],
                         ),
                         const SizedBox(height: 30),
-=======
+
                             ],
                           ),
                         ),
@@ -1136,7 +1133,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                         const Text("What skills do you want to swap?",
                             style: TextStyle(fontSize: 16, color: darkText)),
                         const SizedBox(height: 15),
->>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
+
 
                         // --- Menú de Ordenar ---
                         Row(
@@ -1796,7 +1793,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
       height: 55,
       decoration: BoxDecoration(
         color: green,
-<<<<<<< HEAD
+
         borderRadius: BorderRadius.circular(_radiusPill),
         boxShadow: [
           BoxShadow(
@@ -1816,7 +1813,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
             letterSpacing: 0.2,
           ),
         ),
-=======
+
         borderRadius: BorderRadius.circular(30),
         boxShadow: [
           BoxShadow(
@@ -1830,7 +1827,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
         child: Text("Find a Match",
             style: TextStyle(
                 color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold)),
->>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
+
       ),
     );
   }
@@ -1842,11 +1839,10 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
     required String offers,
     required String imageUrl,
     required String userId,
-<<<<<<< HEAD
+
     bool isFavorite = false,
     VoidCallback? onToggleFavorite,
-=======
->>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
+
   }) {
     return Container(
       padding: const EdgeInsets.all(12),
@@ -1879,7 +1875,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                   CircleAvatar(
                     radius: 35,
                     backgroundColor: Colors.grey.shade200,
-<<<<<<< HEAD
+
                     child: ClipOval(
                       child: imageUrl.isNotEmpty
                           ? (imageUrl.startsWith('http')
@@ -1887,14 +1883,14 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                               : Image.memory(base64Decode(imageUrl), width: 70, height: 70, fit: BoxFit.cover))
                           : const Icon(Icons.person, size: 40, color: Colors.grey),
                     ),
-=======
+
                     backgroundImage: (imageUrl.isNotEmpty && imageUrl.startsWith('http'))
                         ? NetworkImage(imageUrl)
                         : null,
                     child: (imageUrl.isEmpty || !imageUrl.startsWith('http'))
                         ? const Icon(Icons.person, size: 40, color: Colors.grey)
                         : null,
->>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
+
                   ),
                   Positioned(
                     right: 2,
@@ -2026,7 +2022,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
               ],
             ),
           ),
-<<<<<<< HEAD
+
           if (onToggleFavorite != null)
             Column(
               mainAxisSize: MainAxisSize.min,
@@ -2050,8 +2046,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                 ),
               ],
             ),
-=======
->>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
+
         ],
       ),
     );
@@ -2067,7 +2062,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
           return ScaleTransition(
             scale: _scaleAnimation,
             child: Container(
-<<<<<<< HEAD
+
               height: 70,
               width: 70,
               decoration: BoxDecoration(
@@ -2081,7 +2076,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                   ),
                   BoxShadow(
                     color: Colors.black.withValues(alpha: 0.1),
-=======
+
               height: 70, // Un poco más grande para que resalte la imagen
               width: 70,
               decoration: BoxDecoration(
@@ -2099,13 +2094,13 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                   BoxShadow(
                     // ignore: deprecated_member_use
                     color: Colors.black.withOpacity(0.1),
->>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
+
                     blurRadius: 10,
                     offset: const Offset(0, 4),
                   ),
                 ],
               ),
-<<<<<<< HEAD
+
               padding: const EdgeInsets.all(5),
               child: ClipOval(
                 child: Image.asset(
@@ -2116,13 +2111,13 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                     color: green,
                     size: 38,
                   ),
-=======
+
               padding: const EdgeInsets.all(5), // Espacio para el borde blanco
               child: ClipOval(
                 child: Image.asset(
                   'assets/Chatbot_SkillSwap.png', // Tu imagen proporcionada
                   fit: BoxFit.contain,
->>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
+
                 ),
               ),
             ),
@@ -2133,7 +2128,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   }
 
   Widget _buildFilterChip(IconData icon, String label, bool isSelected) {
-<<<<<<< HEAD
+
     final bool isPersonas = label == "Personas";
     final Color inactiveIcon = isPersonas ? _mutedText : const Color(0xFFE6B422);
 
@@ -2164,7 +2159,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
             size: 20,
             color: isSelected ? _primaryGreen : inactiveIcon,
           ),
-=======
+
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
       decoration: BoxDecoration(
@@ -2185,16 +2180,15 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
         mainAxisSize: MainAxisSize.min,
         children: [
           Icon(icon, size: 18, color: isSelected ? const Color(0xFF6BCE7A) : Colors.amber),
->>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
+
           const SizedBox(width: 8),
           Text(
             label,
             style: TextStyle(
-<<<<<<< HEAD
+
               color: isSelected ? _primaryGreen : _darkText,
-=======
+
               color: isSelected ? const Color(0xFF6BCE7A) : const Color(0xFF334A5F),
->>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
               fontWeight: FontWeight.w600,
               fontSize: 14,
             ),
