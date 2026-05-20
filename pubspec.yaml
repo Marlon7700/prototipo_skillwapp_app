@@ -1,0 +1,66 @@
+name: aplicacion_skillwask
+description: "A new Flutter project."
+
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=3.10.0 <4.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  # Firebase Core y Auth
+  firebase_core: ^3.0.0
+  firebase_auth: ^5.0.0
+  
+  # AGREGADA: Necesaria para guardar el perfil (colecciones/documentos)
+  cloud_firestore: ^5.0.0
+  
+  # Google Sign In y Red
+  google_sign_in: ^6.2.1
+  http: ^1.2.0 
+
+  google_generative_ai: ^0.4.0
+  
+  # Selección de archivos y fotos
+  image_picker: ^1.1.0
+  file_picker: ^8.0.7
+  
+  # Base de datos y almacenamiento local
+  firebase_database: ^11.0.0
+  shared_preferences: ^2.2.3
+  flutter_animate: ^4.5.2
+  url_launcher: any
+  emoji_picker_flutter: ^4.4.0
+  record: ^6.2.0
+  audioplayers: ^6.6.0
+  path_provider: ^2.1.5
+  photo_view: ^0.15.0
+  flutter_cache_manager: ^3.4.1
+  open_filex: ^4.7.0
+  flutter_image_compress: ^2.4.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0 # Actualizado a una versión estable
+  flutter_launcher_icons: ^0.13.1
+
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: "assets/IconoSkillSwap.png" # Simplificado para usar la misma ruta
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/Fondo_SkillSwap.png
+    - assets/icono.png
+    - assets/icon.png
+    - assets/imagen_skillwasp.jpeg
+    - assets/Chatbot_SkillSwap.png
+    - assets/Chatbot SkillSwap re.png
+    - assets/imagenes_preguntas.png
+    - assets/imsgene_intercambio.png

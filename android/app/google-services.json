@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "141826962219",
+    "project_id": "skillswapp-b7fc0",
+    "storage_bucket": "skillswapp-b7fc0.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:141826962219:android:a9e4fb7613e727e7344b6e",
+        "android_client_info": {
+          "package_name": "com.example.aplicacion_skillwask"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "141826962219-en9su2naoi6jffscqcm1j3qftnilrm64.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.aplicacion_skillwask",
+            "certificate_hash": "c6ec7f69c5c8ef1bd900916b14b6ed5e2054420e"
+          }
+        },
+        {
+          "client_id": "141826962219-rfemk8b6ocl1c5l4c5l4c5l4c5l4c5l4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.aplicacion_skillwask",
+            "certificate_hash": "1afaf81679f881db2ef028ba9c0c6a3af17fd72387a39e63b7e71554d2208a92"
+          }
+        },
+        {
+          "client_id": "141826962219-rafvmqkucdsdpnocctg4nrea8d1mvqsn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDh4LU3VSh02Hfk7xUR6fDl6F7SWIRrKpk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "141826962219-rafvmqkucdsdpnocctg4nrea8d1mvqsn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
