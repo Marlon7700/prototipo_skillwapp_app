@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-<<<<<<< HEAD
+
 import 'package:flutter/services.dart';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -48,7 +48,7 @@ class _ChatScreenState extends State<ChatScreen> {
   bool _showEmoji = false;
   bool _isUploading = false;
   bool _isRecording = false;
-<<<<<<< HEAD
+
   bool _isLocked = false;
   bool _isTextEmpty = true;
   int _recordSeconds = 0;
@@ -131,7 +131,7 @@ class _ChatScreenState extends State<ChatScreen> {
     final text = _messageController.text.trim();
     if (text.isEmpty) return;
 
-<<<<<<< HEAD
+
     if (_editingMessageId != null) {
       await _guardarEdicionMensaje(text);
       return;
@@ -895,7 +895,7 @@ class _ChatScreenState extends State<ChatScreen> {
 
   // ✅ Enviar mensaje de imagen (Base64)
   Future<void> enviarMensajeImagen(String base64Data) async {
-<<<<<<< HEAD
+
     final data = _camposBaseMensaje()
       ..addAll({'mensaje': base64Data, 'type': 'image'});
 
