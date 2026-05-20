@@ -1,6 +1,4 @@
-import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
 import 'package:google_generative_ai/google_generative_ai.dart';
 import 'package:image_picker/image_picker.dart'; // Para la cámara
 import 'package:file_picker/file_picker.dart';   // Para los archivos
@@ -237,11 +235,7 @@ class _InterfazIAState extends State<InterfazIA> with SingleTickerProviderStateM
         }
       }
       
-<<<<<<< HEAD
       if (chatTitle.length > 35) chatTitle = "${chatTitle.substring(0, 32)}...";
-=======
-      if (chatTitle.length > 35) chatTitle = chatTitle.substring(0, 32) + "...";
->>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
 
       if (_currentChatId == null) {
         // Crear nuevo documento

@@ -161,7 +161,7 @@ class _ChatScreenState extends State<ChatScreen> {
     if (mounted) setState(() => _showEmoji = false);
 >>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
 
-    await FirebaseFirestore.instance
+    FirebaseFirestore.instance
         .collection('chat')
         .doc(_chatId)
         .collection('mensajes')
@@ -228,6 +228,7 @@ class _ChatScreenState extends State<ChatScreen> {
         );
       }
     }
+    return null;
   }
 
   void _cancelarEdicion() {
@@ -493,6 +494,7 @@ class _ChatScreenState extends State<ChatScreen> {
         const SnackBar(content: Text('Copiado al portapapeles'), duration: Duration(seconds: 2)),
       );
     }
+    return null;
   }
 
   Future<void> _eliminarMensajes(Set<String> ids, {bool esPropio = false}) async {
@@ -530,10 +532,12 @@ class _ChatScreenState extends State<ChatScreen> {
     } catch (e) {
       debugPrint('Error al eliminar: $e');
     }
+    return null;
   }
 
   Future<void> _eliminarSeleccionados() async {
     await _eliminarMensajes(_selectedMessageIds.toSet());
+    return null;
   }
 
   String _textoParaCopiar(Map<String, dynamic> msgData, String type) {
@@ -723,6 +727,7 @@ class _ChatScreenState extends State<ChatScreen> {
     } catch (e) {
       debugPrint("Error al seleccionar archivo: $e");
     }
+    return null;
   }
 
   // ─── Audio ─────────────────────────────────────────────────────────────────
@@ -767,6 +772,7 @@ class _ChatScreenState extends State<ChatScreen> {
     } catch (e) {
       debugPrint("Error al grabar: $e");
     }
+    return null;
   }
 
 <<<<<<< HEAD
@@ -809,7 +815,7 @@ class _ChatScreenState extends State<ChatScreen> {
         });
 <<<<<<< HEAD
         // ✅ Enviar automáticamente al terminar de grabar
-        _uploadAndSendSelected();
+        uploadAndSendSelected();
 =======
 >>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
       }
@@ -819,7 +825,7 @@ class _ChatScreenState extends State<ChatScreen> {
   }
 
 <<<<<<< HEAD
-  String _formatDuration(int seconds) {
+  String formatDuration(int seconds) {
     int mins = seconds ~/ 60;
     int secs = seconds % 60;
     return "${mins.toString().padLeft(2, '0')}:${secs.toString().padLeft(2, '0')}";
@@ -828,7 +834,7 @@ class _ChatScreenState extends State<ChatScreen> {
 =======
 >>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
   // ✅ Upload y envío (Firestore Base64 para saltar Storage)
-  Future<void> _uploadAndSendSelected() async {
+  Future<void> uploadAndSendSelected() async {
     if (_selectedFile == null) return;
     if (!(await _selectedFile!.exists())) {
       if (mounted) {
@@ -873,11 +879,11 @@ class _ChatScreenState extends State<ChatScreen> {
       }
 
       if (type == 'image') {
-        await _enviarMensajeImagen(base64Content);
+        await enviarMensajeImagen(base64Content);
       } else if (type == 'audio') {
-        await _enviarMensajeAudio(base64Content);
+        await enviarMensajeAudio(base64Content);
       } else {
-        await _enviarMensajeArchivo(base64Content, fileName);
+        await enviarMensajeArchivo(base64Content, fileName);
       }
 
       if (mounted) {
@@ -897,16 +903,17 @@ class _ChatScreenState extends State<ChatScreen> {
         );
       }
     }
+    return null;
   }
 
   // ✅ Enviar mensaje de imagen (Base64)
-  Future<void> _enviarMensajeImagen(String base64Data) async {
+  Future<void> enviarMensajeImagen(String base64Data) async {
 <<<<<<< HEAD
     final data = _camposBaseMensaje()
       ..addAll({'mensaje': base64Data, 'type': 'image'});
 =======
 >>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
-    await FirebaseFirestore.instance
+    FirebaseFirestore.instance
         .collection('chat')
         .doc(_chatId)
         .collection('mensajes')
@@ -927,16 +934,17 @@ class _ChatScreenState extends State<ChatScreen> {
       'lastMessage': "📷 Foto",
       'lastTimestamp': FieldValue.serverTimestamp(),
     }, SetOptions(merge: true));
+    return null;
   }
 
   // ✅ Enviar mensaje de audio (Base64)
-  Future<void> _enviarMensajeAudio(String base64Data) async {
+  Future<void> enviarMensajeAudio(String base64Data) async {
 <<<<<<< HEAD
     final data = _camposBaseMensaje()
       ..addAll({'mensaje': base64Data, 'type': 'audio'});
 =======
 >>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
-    await FirebaseFirestore.instance
+    FirebaseFirestore.instance
         .collection('chat')
         .doc(_chatId)
         .collection('mensajes')
@@ -957,10 +965,11 @@ class _ChatScreenState extends State<ChatScreen> {
       'lastMessage': "🎤 Audio",
       'lastTimestamp': FieldValue.serverTimestamp(),
     }, SetOptions(merge: true));
+    return null;
   }
 
   // ✅ Enviar mensaje de archivo (Base64)
-  Future<void> _enviarMensajeArchivo(String base64Data, String fileName) async {
+  Future<void> enviarMensajeArchivo(String base64Data, String fileName) async {
 <<<<<<< HEAD
     final data = _camposBaseMensaje()
       ..addAll({
@@ -970,7 +979,7 @@ class _ChatScreenState extends State<ChatScreen> {
       });
 =======
 >>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
-    await FirebaseFirestore.instance
+    FirebaseFirestore.instance
         .collection('chat')
         .doc(_chatId)
         .collection('mensajes')
@@ -992,9 +1001,10 @@ class _ChatScreenState extends State<ChatScreen> {
       'lastMessage': "📎 $fileName",
       'lastTimestamp': FieldValue.serverTimestamp(),
     }, SetOptions(merge: true));
+    return null;
   }
 
-  Future<void> _downloadAndOpenFile(String url, String fileName) async {
+  Future<void> downloadAndOpenFile(String url, String fileName) async {
     try {
       final file = await DefaultCacheManager().getSingleFile(url);
       await OpenFilex.open(file.path);
@@ -1005,14 +1015,15 @@ class _ChatScreenState extends State<ChatScreen> {
         );
       }
     }
+    return null;
   }
 
-  void _mostrarEmojis() {
+  void mostrarEmojis() {
     FocusScope.of(context).unfocus();
     setState(() => _showEmoji = !_showEmoji);
   }
 
-  void _cancelarSeleccion() {
+  void cancelarSeleccion() {
     setState(() {
       _selectedFile = null;
       _selectedFileName = null;
@@ -1020,7 +1031,7 @@ class _ChatScreenState extends State<ChatScreen> {
     });
   }
 
-  void _iniciarLlamada(bool video) {
+  void iniciarLlamada(bool video) {
     showDialog(
       context: context,
       builder: (_) => AlertDialog(
@@ -1038,7 +1049,7 @@ class _ChatScreenState extends State<ChatScreen> {
 
 <<<<<<< HEAD
   // ─── Tema del Chat ────────────────────────────────────────────────────────
-  Future<void> _cargarTemaChat() async {
+  Future<void> cargarTemaChat() async {
     final doc = await FirebaseFirestore.instance.collection('chat').doc(_chatId).get();
     if (doc.exists && doc.data() != null) {
       final data = doc.data()!;
@@ -1050,7 +1061,7 @@ class _ChatScreenState extends State<ChatScreen> {
           }
           if (data['bgColor'] != null) {
             _backgroundColor = Color(data['bgColor']);
-            _actualizarColoresBurbujas(Color(data['bgColor']));
+            actualizarColoresBurbujas(Color(data['bgColor']));
           }
           if (data['bubbleDesign'] != null) {
             _bubbleDesign = data['bubbleDesign'];
@@ -1058,9 +1069,10 @@ class _ChatScreenState extends State<ChatScreen> {
         });
       }
     }
+    return null;
   }
 
-  void _actualizarColoresBurbujas(Color bgColor) {
+  void actualizarColoresBurbujas(Color bgColor) {
     if (bgColor == Colors.white) {
       _bubbleMeColor = const Color(0xFFE7FFDB);
       _bubbleOtherColor = Colors.white;
@@ -1076,20 +1088,21 @@ class _ChatScreenState extends State<ChatScreen> {
     }
   }
 
-  Future<void> _cambiarColorPieza(Color color) async {
+  Future<void> cambiarColorPieza(Color color) async {
     setState(() {
       _backgroundColor = color;
       _backgroundData = null;
       _cachedBgBytes = null;
-      _actualizarColoresBurbujas(color);
+      actualizarColoresBurbujas(color);
     });
     await FirebaseFirestore.instance.collection('chat').doc(_chatId).set({
       'bgColor': color.value,
       'bgImage': null,
     }, SetOptions(merge: true));
+    return null;
   }
 
-  Future<void> _cambiarImagenFondo() async {
+  Future<void> cambiarImagenFondo() async {
     final XFile? image = await _picker.pickImage(source: ImageSource.gallery, imageQuality: 50);
     if (image != null) {
       final bytes = await File(image.path).readAsBytes();
@@ -1104,18 +1117,20 @@ class _ChatScreenState extends State<ChatScreen> {
         'bgColor': null,
       }, SetOptions(merge: true));
     }
+    return null;
   }
 
-  Future<void> _cambiarDisenoBurbujas(String diseno) async {
+  Future<void> cambiarDisenoBurbujas(String diseno) async {
     setState(() {
       _bubbleDesign = diseno;
     });
     await FirebaseFirestore.instance.collection('chat').doc(_chatId).set({
       'bubbleDesign': diseno,
     }, SetOptions(merge: true));
+    return null;
   }
 
-  void _mostrarMenuTema() {
+  void mostrarMenuTema() {
     showModalBottomSheet(
       context: context,
       isScrollControlled: true,
@@ -1137,7 +1152,7 @@ class _ChatScreenState extends State<ChatScreen> {
                 title: const Text("Poner foto de fondo"),
                 onTap: () {
                   Navigator.pop(context);
-                  _cambiarImagenFondo();
+                  cambiarImagenFondo();
                 },
               ),
               const Divider(),
@@ -1146,9 +1161,9 @@ class _ChatScreenState extends State<ChatScreen> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  _designOption("Moderno", "modern", Icons.rectangle_rounded),
-                  _designOption("Clásico", "classic", Icons.chat_bubble_outline),
-                  _designOption("Redondo", "rounded", Icons.circle_outlined),
+                  designOption("Moderno", "modern", Icons.rectangle_rounded),
+                  designOption("Clásico", "classic", Icons.chat_bubble_outline),
+                  designOption("Redondo", "rounded", Icons.circle_outlined),
                 ],
               ),
               const SizedBox(height: 20),
@@ -1159,14 +1174,14 @@ class _ChatScreenState extends State<ChatScreen> {
                 child: ListView(
                   scrollDirection: Axis.horizontal,
                   children: [
-                    _colorOption(Colors.white),
-                    _colorOption(const Color(0xFFE5DDD5)), // WhatsApp clásico
-                    _colorOption(const Color(0xFFF1F1F1)),
-                    _colorOption(const Color(0xFFFFE0B2)),
-                    _colorOption(const Color(0xFFC8E6C9)),
-                    _colorOption(const Color(0xFFBBDEFB)),
-                    _colorOption(const Color(0xFFD1C4E9)),
-                    _colorOption(const Color(0xFFF8BBD0)),
+                    colorOption(Colors.white),
+                    colorOption(const Color(0xFFE5DDD5)), // WhatsApp clásico
+                    colorOption(const Color(0xFFF1F1F1)),
+                    colorOption(const Color(0xFFFFE0B2)),
+                    colorOption(const Color(0xFFC8E6C9)),
+                    colorOption(const Color(0xFFBBDEFB)),
+                    colorOption(const Color(0xFFD1C4E9)),
+                    colorOption(const Color(0xFFF8BBD0)),
                   ],
                 ),
               ),
@@ -1178,12 +1193,12 @@ class _ChatScreenState extends State<ChatScreen> {
     );
   }
 
-  Widget _designOption(String label, String value, IconData icon) {
+  Widget designOption(String label, String value, IconData icon) {
     bool isSelected = _bubbleDesign == value;
     return GestureDetector(
       onTap: () {
         Navigator.pop(context);
-        _cambiarDisenoBurbujas(value);
+        cambiarDisenoBurbujas(value);
       },
       child: Column(
         children: [
@@ -1203,11 +1218,11 @@ class _ChatScreenState extends State<ChatScreen> {
     );
   }
 
-  Widget _colorOption(Color color) {
+  Widget colorOption(Color color) {
     return GestureDetector(
       onTap: () {
         Navigator.pop(context);
-        _cambiarColorPieza(color);
+        cambiarColorPieza(color);
       },
       child: Container(
         width: 45,
@@ -1225,7 +1240,7 @@ class _ChatScreenState extends State<ChatScreen> {
   @override
   void initState() {
     super.initState();
-    _cargarTemaChat();
+    cargarTemaChat();
     _messageController.addListener(() {
       if (mounted) {
         setState(() {
@@ -1348,15 +1363,15 @@ class _ChatScreenState extends State<ChatScreen> {
             : [
                 IconButton(
                   icon: const Icon(Icons.palette_outlined, color: darkText),
-                  onPressed: _mostrarMenuTema,
+                  onPressed: mostrarMenuTema,
                 ),
                 IconButton(
                   icon: const Icon(Icons.call, color: darkText),
-                  onPressed: () => _iniciarLlamada(false),
+                  onPressed: () => iniciarLlamada(false),
                 ),
                 IconButton(
                   icon: const Icon(Icons.videocam, color: darkText),
-                  onPressed: () => _iniciarLlamada(true),
+                  onPressed: () => iniciarLlamada(true),
                 ),
               ],
       ),
@@ -1744,7 +1759,7 @@ class _ChatScreenState extends State<ChatScreen> {
 >>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
 
   // ── Preview panel ──────────────────────────────────────────────────────────
-  Widget _buildPreviewPanel(Color green) {
+  Widget buildPreviewPanel(Color green) {
     return Container(
       padding: const EdgeInsets.all(12),
       margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
@@ -1829,7 +1844,7 @@ class _ChatScreenState extends State<ChatScreen> {
   // ── Burbujas ───────────────────────────────────────────────────────────────
   // ── Burbujas (Diseño Estilo Moderno) ───────────────────────────────────────
 <<<<<<< HEAD
-  Widget _buildImageBubble(
+  Widget buildImageBubble(
     String data,
     bool isMe,
     Timestamp? timestamp, {
@@ -1916,7 +1931,7 @@ class _ChatScreenState extends State<ChatScreen> {
     );
   }
 
-  void _openFullScreenImage(String data) {
+  void openFullScreenImage(String data) {
     if (data.isEmpty) return;
     ImageProvider imageProvider;
     if (data.startsWith('http')) {
@@ -1940,7 +1955,7 @@ class _ChatScreenState extends State<ChatScreen> {
             actions: [
               IconButton(
                 icon: const Icon(Icons.download),
-                onPressed: () => _downloadFileToGallery(
+                onPressed: () => downloadFileToGallery(
                     data, "imagen_${DateTime.now().millisecondsSinceEpoch}.jpg"),
               ),
             ],
@@ -1958,7 +1973,7 @@ class _ChatScreenState extends State<ChatScreen> {
   }
 
 <<<<<<< HEAD
-  Widget _buildAvatarLetter() {
+  Widget buildAvatarLetter() {
     const Color darkText = Color(0xFF334A5F);
     return Text(
       widget.receiverName.isNotEmpty ? widget.receiverName[0].toUpperCase() : '?',
@@ -1969,7 +1984,7 @@ class _ChatScreenState extends State<ChatScreen> {
 =======
 >>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
   // ✅ Nueva función para descargar archivos (incluso Base64) a la carpeta de Descargas
-  Future<void> _downloadFileToGallery(String data, String fileName) async {
+  Future<void> downloadFileToGallery(String data, String fileName) async {
     try {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
@@ -2020,9 +2035,10 @@ class _ChatScreenState extends State<ChatScreen> {
         );
       }
     }
+    return null;
   }
 
-  Widget _buildFileBubble(
+  Widget buildFileBubble(
 <<<<<<< HEAD
     String data,
     String fileName,
@@ -2094,16 +2110,11 @@ class _ChatScreenState extends State<ChatScreen> {
                   ),
                   IconButton(
                     icon: const Icon(Icons.download_for_offline, color: Colors.blue, size: 24),
-                    onPressed: () => _downloadFileToGallery(data, fileName),
+                    onPressed: () => downloadFileToGallery(data, fileName),
                   ),
                 ],
               ),
             ),
-            if (timestamp != null)
-              Text(
-                _formatTime(timestamp),
-                style: TextStyle(color: Colors.grey.shade600, fontSize: 10),
-              ),
           ],
         ),
       ),
@@ -2116,7 +2127,7 @@ class _ChatScreenState extends State<ChatScreen> {
     return '${dt.hour.toString().padLeft(2, '0')}:${dt.minute.toString().padLeft(2, '0')}';
   }
 
-  Widget _buildMessageInput(Color green) {
+  Widget buildMessageInput(Color green) {
     if (_isRecording) {
       return Container(
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 12),
@@ -2195,7 +2206,7 @@ class _ChatScreenState extends State<ChatScreen> {
               children: [
                 IconButton(
                   icon: const Icon(Icons.add, color: Colors.grey, size: 28),
-                  onPressed: () => _mostrarOpcionesAdjuntos(green),
+                  onPressed: () => mostrarOpcionesAdjuntos(green),
                 ),
                 Expanded(
                   child: Container(
@@ -2272,7 +2283,7 @@ class _ChatScreenState extends State<ChatScreen> {
     );
   }
 
-  void _mostrarOpcionesAdjuntos(Color green) {
+  void mostrarOpcionesAdjuntos(Color green) {
     showModalBottomSheet(
       context: context,
       backgroundColor: Colors.transparent,
@@ -2859,3 +2870,5 @@ class _Base64ImageState extends State<Base64Image> {
 =======
 }
 >>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
+
+    return null;

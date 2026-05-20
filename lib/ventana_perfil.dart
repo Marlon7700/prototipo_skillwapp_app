@@ -136,6 +136,7 @@ class _ventana_perfilState extends State<ventana_perfil> with SingleTickerProvid
       );
 >>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
     }
+    return null;
   }
 
   // Método para el fondo de perfil (Banner)
@@ -161,6 +162,7 @@ class _ventana_perfilState extends State<ventana_perfil> with SingleTickerProvid
       });
 >>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
     }
+    return null;
   }
 
   // Carga el documento del usuario desde Firestore.
@@ -233,6 +235,7 @@ class _ventana_perfilState extends State<ventana_perfil> with SingleTickerProvid
     } finally {
       if (mounted) setState(() => _isLoading = false);
     }
+    return null;
   }
 
   // Corregido: Guarda todos los campos incluyendo la foto
@@ -266,7 +269,7 @@ class _ventana_perfilState extends State<ventana_perfil> with SingleTickerProvid
         'photoUrl': _photoUrl ?? "",
         'bannerUrl': _bannerUrl ?? "",
         'actualizadoEn': FieldValue.serverTimestamp(),
-      };
+      }
 
 >>>>>>> b3c7d01f64649bd67d2177e2cdb71d65d3165518
       await FirebaseFirestore.instance.collection('usuarios').doc(_uid).set(datos, SetOptions(merge: true));
@@ -277,6 +280,7 @@ class _ventana_perfilState extends State<ventana_perfil> with SingleTickerProvid
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(backgroundColor: primaryGreen, content: const Text('¡Perfil actualizado con éxito!')),
       );
+      return null;
     } catch (e) {
       debugPrint('Error: $e');
     } finally {
@@ -749,8 +753,8 @@ class _ventana_perfilState extends State<ventana_perfil> with SingleTickerProvid
   }
 
 =======
-      const Center(child: Text("Próximamente: Historial laboral")),
-      const Center(child: Text("Próximamente: Tus posts")),
+      Center(child = const Text("Próximamente: Historial laboral")),
+      Center(child = const Text("Próximamente: Tus posts")),
     ][_tabController.index];
   }
 
